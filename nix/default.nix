@@ -1,0 +1,125 @@
+{ callPackage
+, lib
+, neovimUtils
+, neovim-unwrapped
+, pkgs
+, stdenv
+, sqlite
+, vimPlugins
+, wrapNeovimUnstable
+
+, base16-palette ? null
+}:
+
+let
+  plugins = with vimPlugins; [
+    (callPackage ./base16-nvim {})
+    battery-nvim
+    cmp-buffer
+    cmp-cmdline
+    cmp-async-path
+    cmp-nvim-lsp
+    cmp-nvim-lsp-document-symbol
+    cmp-nvim-lsp-signature-help
+    crates-nvim
+    diffview-nvim
+    gitsigns-nvim
+    indent-blankline-nvim-lua
+    isabelle-lsp-nvim
+    isabelle-syn-nvim
+    lualine-nvim
+    nvim-cmp
+    nvim-lspconfig
+    nvim-autopairs
+    nvim-navic
+    nvim-treesitter.withAllGrammars
+    nvim-web-devicons
+    oil-nvim
+    orgmode
+    rainbow-delimiters-nvim
+    telescope-nvim
+    telescope-tabs
+    telescope-ui-select-nvim
+    undotree
+    vimtex
+  ];
+
+  extraPackages = with pkgs; [
+    # Language Servers
+    clang-tools_17
+    lua-language-server
+    nixd
+    ocamlPackages.ocaml-lsp
+    ruff
+    rust-analyzer
+    texlab
+    typescript-language-server
+    vscode-langservers-extracted
+
+    # Misc
+    fd
+    findutils
+    ripgrep
+  ];
+
+  extraLuaPackages = p: [];
+
+  withNodeJs = false;
+
+  withPython3 = false;
+  extraPython3Packages = p: [];
+
+  withRuby = false;
+  withSqlite = false;
+
+  viAlias = false;
+  vimAlias = false;
+
+  neovimConfig = neovimUtils.makeNeovimConfig {
+    inherit
+      plugins
+      extraPython3Packages extraLuaPackages withNodeJs withRuby withPython3
+      viAlias vimAlias;
+  };
+
+  rtp = stdenv.mkDerivation {
+    name = "rtp";
+    src = ../nvim;
+    phases = [ "installPhase" ];
+    installPhase = ''
+      mkdir -p $out;
+      cp -r $src/* $out/
+    '';
+  };
+
+  initLua = ''
+    ${lib.optionalString (base16-palette != null) ''
+      vim.g.base16_colors = { ${ lib.foldl (acc: {name, value}: acc + "${name} = '#${value}',") "" (lib.attrsToList base16-palette)} }
+    ''}
+
+    vim.opt.rtp:prepend('${rtp}')
+    vim.opt.rtp:prepend('${rtp}/after')
+
+    ${builtins.readFile ../nvim/init.lua}
+  '';
+
+  extraMakeWrapperArgs = let
+    sqliteLibExt = stdenv.hostPlatform.extensions.sharedLibrary;
+    sqliteLibPath = "${sqlite.out}/lib/libsqlite3${sqliteLibExt}";
+    extraPackages' = extraPackages ++ (lib.optionals withSqlite [ sqlite ]);
+  in builtins.concatStringsSep " " (
+    (lib.optional (extraPackages' != [])
+      ''--prefix PATH : "${lib.makeBinPath extraPackages'}"'')
+    ++ (lib.optional withSqlite
+      ''--set LIBSQLITE_CLIB_PATH "${sqliteLibPath}"'')
+    ++ (lib.optional withSqlite
+      ''--set LIBSQLITE "${sqliteLibPath}"'')
+  );
+in wrapNeovimUnstable neovim-unwrapped (neovimConfig // {
+  luaRcContent = initLua;
+  wrapperArgs =
+    lib.escapeShellArgs neovimConfig.wrapperArgs
+    + " "
+    + extraMakeWrapperArgs;
+  wrapRc = true;
+})

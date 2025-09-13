@@ -7,6 +7,7 @@
         pkgs = import nixpkgs { inherit system; overlays = [ nixpkgs-overlay.overlays.default ]; config.allowUnfree = true; };
       in rec {
         nvim = pkgs.callPackage ./nix {};
+        nvim-appimage = pkgs.callPackage ./nix/appimage.nix {};
         default = nvim;
       });
       overlays.default = ./nix/overlay.nix;

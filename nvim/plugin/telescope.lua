@@ -1,7 +1,7 @@
 local telescope = require('telescope')
 telescope.setup {
   defaults = {
-    borderchars = {  '─', '│', '─', '│', '┌', '┐', '┘', '└' },
+    borderchars = { '─', '│', '─', '│', '┌', '┐', '┘', '└' },
   },
 }
 
@@ -20,8 +20,9 @@ vim.keymap.set('n', '<leader>lr', tele_builtin.lsp_references, {})
 vim.keymap.set('n', '<leader>li', tele_builtin.lsp_implementations, {})
 vim.keymap.set('n', '<leader>ld', tele_builtin.lsp_type_definitions, {})
 
-telescope.load_extension('ui-select')
+telescope.load_extension('fzf')
 
 telescope.load_extension('telescope-tabs')
 vim.keymap.set('n', '<leader>tt', require('telescope-tabs').list_tabs, {})
 
+telescope.load_extension('ui-select')

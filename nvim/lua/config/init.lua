@@ -1,0 +1,6 @@
+require('config.autocmd')
+require('config.colorscheme')
+require('config.keymaps')
+require('config.lsp')
+require('config.opts')
+require('config.usercmd')

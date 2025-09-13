@@ -51,7 +51,7 @@ require('lualine').setup {
     lualine_y = { 'progress', 'location', },
     lualine_z = {
       {
-        function () return battery.get_status_line() end,
+        function() return battery.get_status_line() end,
       },
       {
         'datetime',

@@ -1,5 +1,5 @@
-require("isabelle-lsp").setup {
-  isabelle_path = os.getenv("LOCAL_ISABELLE_PATH") or "isabelle",
+require('isabelle-lsp').setup {
+  isabelle_path = os.getenv('LOCAL_ISABELLE_PATH') or 'isabelle',
   log = nil,
   verbose = false,
   unicode_symbols_output = true,
@@ -34,7 +34,7 @@ require("isabelle-lsp").setup {
     ['text_overview_error'] = false,
     ['text_overview_warning'] = false,
     ['dotted_writeln'] = false,
-    ['dotted_warning'] = "DiagnosticUnderlineWarn",
+    ['dotted_warning'] = 'DiagnosticUnderlineWarn',
     ['dotted_information'] = false,
     ['spell_checker'] = 'Underlined',
     ['text_inner_cartouche'] = false,

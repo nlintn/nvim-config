@@ -7,7 +7,9 @@
 , sqlite
 , vimPlugins
 , wrapNeovimUnstable
+, writeText
 
+, buildAppImage ? false
 , base16-palette ? null
 }:
 
@@ -27,7 +29,9 @@ let
     indent-blankline-nvim-lua
     isabelle-lsp-nvim
     isabelle-syn-nvim
+    lazygit-nvim
     lualine-nvim
+    mini-ai
     nvim-cmp
     nvim-lspconfig
     nvim-autopairs
@@ -37,6 +41,7 @@ let
     oil-nvim
     orgmode
     rainbow-delimiters-nvim
+    telescope-fzf-native-nvim
     telescope-nvim
     telescope-tabs
     telescope-ui-select-nvim
@@ -59,6 +64,9 @@ let
     # Misc
     fd
     findutils
+    git
+    lazygit
+    mercurial
     ripgrep
   ];
 
@@ -93,8 +101,16 @@ let
   };
 
   initLua = ''
+    ${lib.optionalString buildAppImage ''
+      vim.o.shell = '/bin/sh'
+      vim.g.lazygit_use_custom_config_file_path = 1
+      vim.g.lazygit_config_file_path = '${writeText "lazygit-cfg" ''
+        git:
+          overrideGpg: true
+      ''}'
+    ''}
     ${lib.optionalString (base16-palette != null) ''
-      vim.g.base16_colors = { ${ lib.foldl (acc: {name, value}: acc + "${name} = '#${value}',") "" (lib.attrsToList base16-palette)} }
+      vim.g.base16_palette = { ${ lib.foldl (acc: {name, value}: acc + "${name} = '#${value}',") "" (lib.attrsToList base16-palette)} }
     ''}
 
     vim.opt.rtp:prepend('${rtp}')

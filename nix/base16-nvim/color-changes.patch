@@ -1,14 +1,14 @@
-From 7cf81391a075fe237aac2aa48c65f01e8f3fb9eb Mon Sep 17 00:00:00 2001
+From 83bd94822143a3ddd46d9ec727c81ea9823b1931 Mon Sep 17 00:00:00 2001
 From: Nico Lintner <118087966+nlintn@users.noreply.github.com>
 Date: Fri, 8 Aug 2025 17:02:07 +0200
 Subject: [PATCH] color changes
 
 ---
- lua/base16-colorscheme.lua | 218 +++++++++++++++++++------------------
- 1 file changed, 110 insertions(+), 108 deletions(-)
+ lua/base16-colorscheme.lua | 220 +++++++++++++++++++------------------
+ 1 file changed, 112 insertions(+), 108 deletions(-)
 
 diff --git a/lua/base16-colorscheme.lua b/lua/base16-colorscheme.lua
-index 92dfbab..60de72c 100644
+index 92dfbab..006ff6d 100644
 --- a/lua/base16-colorscheme.lua
 +++ b/lua/base16-colorscheme.lua
 @@ -92,7 +92,6 @@ M.highlight = setmetatable({}, {
@@ -388,7 +388,16 @@ index 92dfbab..60de72c 100644
      end
  
      if M.config.notify then
-@@ -587,7 +586,7 @@ function M.setup(colors, config)
+@@ -576,6 +575,8 @@ function M.setup(colors, config)
+         hi.NotifyTRACEBody   = 'Normal'
+     end
+ 
++    hi.LazyGitBorder = 'FloatBorder'
++
+     if M.config.indentblankline then
+         hi.IndentBlanklineChar        = { guifg = M.colors.base02, gui = 'nocombine', ctermfg = M.colors.cterm02 }
+         hi.IndentBlanklineContextChar = { guifg = M.colors.base04, gui = 'nocombine', ctermfg = M.colors.cterm04  }
+@@ -587,7 +588,7 @@ function M.setup(colors, config)
      if M.config.cmp then
          hi.CmpDocumentationBorder   = { guifg = M.colors.base05, guibg = M.colors.base00, gui = nil, guisp = nil, ctermfg = M.colors.cterm05, ctermbg = M.colors.cterm00 }
          hi.CmpDocumentation         = { guifg = M.colors.base05, guibg = M.colors.base00, gui = nil, guisp = nil, ctermfg = M.colors.cterm05, ctermbg = M.colors.cterm00 }
@@ -397,7 +406,7 @@ index 92dfbab..60de72c 100644
          hi.CmpItemAbbrDeprecated    = { guifg = M.colors.base03, guibg = nil, gui = 'strikethrough', guisp = nil, ctermfg = M.colors.cterm03, ctermbg = nil }
          hi.CmpItemAbbrMatch         = { guifg = M.colors.base0D, guibg = nil, gui = nil, guisp = nil, ctermfg = M.colors.cterm0D, ctermbg = nil }
          hi.CmpItemAbbrMatchFuzzy    = { guifg = M.colors.base0D, guibg = nil, gui = nil, guisp = nil, ctermfg = M.colors.cterm0D, ctermbg = nil }
-@@ -608,10 +607,10 @@ function M.setup(colors, config)
+@@ -608,10 +609,10 @@ function M.setup(colors, config)
          hi.CmpItemKindEnum          = { guifg = M.colors.base0A, guibg = nil, gui = nil, guisp = nil, ctermfg = M.colors.cterm0A, ctermbg = nil }
          hi.CmpItemKindUnit          = { guifg = M.colors.base0A, guibg = nil, gui = nil, guisp = nil, ctermfg = M.colors.cterm0A, ctermbg = nil }
          hi.CmpItemKindModule        = { guifg = M.colors.base05, guibg = nil, gui = nil, guisp = nil, ctermfg = M.colors.cterm05, ctermbg = nil }
@@ -411,7 +420,7 @@ index 92dfbab..60de72c 100644
          hi.CmpItemKindOperator      = { guifg = M.colors.base05, guibg = nil, gui = nil, guisp = nil, ctermfg = M.colors.cterm05, ctermbg = nil }
          hi.CmpItemKindSnippet       = { guifg = M.colors.base04, guibg = nil, gui = nil, guisp = nil, ctermfg = M.colors.cterm04, ctermbg = nil }
      end
-@@ -626,7 +625,7 @@ function M.setup(colors, config)
+@@ -626,7 +627,7 @@ function M.setup(colors, config)
          hi['@class'] = 'TSType'
          hi['@struct'] = 'TSType'
          hi['@enum'] = 'TSType'
@@ -420,7 +429,7 @@ index 92dfbab..60de72c 100644
          hi['@event'] = 'Identifier'
          hi['@interface'] = 'Structure'
          hi['@modifier'] = 'Identifier'
-@@ -643,11 +642,14 @@ function M.setup(colors, config)
+@@ -643,11 +644,14 @@ function M.setup(colors, config)
          hi['@lsp.type.parameter'] = '@parameter'
          hi['@lsp.type.variable'] = '@variable'
          hi['@lsp.type.property'] = '@property'

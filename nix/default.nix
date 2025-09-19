@@ -17,9 +17,9 @@ let
   plugins = with vimPlugins; [
     (callPackage ./base16-nvim {})
     battery-nvim
+    cmp-async-path
     cmp-buffer
     cmp-cmdline
-    cmp-async-path
     cmp-nvim-lsp
     cmp-nvim-lsp-document-symbol
     cmp-nvim-lsp-signature-help
@@ -32,9 +32,9 @@ let
     lazygit-nvim
     lualine-nvim
     mini-ai
+    nvim-autopairs
     nvim-cmp
     nvim-lspconfig
-    nvim-autopairs
     nvim-navic
     nvim-treesitter.withAllGrammars
     nvim-web-devicons
@@ -51,7 +51,7 @@ let
 
   extraPackages = with pkgs; [
     # Language Servers
-    clang-tools_17
+    clang-tools
     lua-language-server
     nixd
     ocamlPackages.ocaml-lsp
@@ -62,6 +62,7 @@ let
     vscode-langservers-extracted
 
     # Misc
+    curlMinimal
     fd
     findutils
     git

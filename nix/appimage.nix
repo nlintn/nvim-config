@@ -1,9 +1,8 @@
 { callPackage
 , fetchFromGitHub
-, lib
 , system
 , ...
-}:
+} @ args:
 
 let
   nix-appimage = fetchFromGitHub {
@@ -13,7 +12,10 @@ let
     hash = "sha256-rSwndd+4JmGrjR/APDTgJlXTEPwfCmt7UF+SceW3bfM=";
   };
   bundler = (import nix-appimage).bundlers.${system}.default;
+  fn = import ./.;
 in
-  lib.makeOverridable (x: bundler (
-    callPackage ./. ({ buildAppImage = true; } // x)
-  ))
+  bundler (
+    callPackage fn (builtins.intersectAttrs
+      (builtins.functionArgs fn) ({ buildAppImage = true; } // args)
+    )
+  )

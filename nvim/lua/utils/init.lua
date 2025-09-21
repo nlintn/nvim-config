@@ -45,7 +45,7 @@ function M.close_floats()
 end
 
 function M.close_floats_then(f)
-  return function ()
+  return function()
     M.close_floats()
     f()
   end

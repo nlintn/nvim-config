@@ -1,19 +1,20 @@
 local api = vim.api
-local o_local = vim.opt_local
+local opt_local = vim.opt_local
+local utils = require('utils')
 
 local gr_cursorline = api.nvim_create_augroup('CursorLine', {
   clear = true
 })
 api.nvim_create_autocmd({ 'InsertEnter' }, {
   group = gr_cursorline,
-  callback = function ()
-    o_local.cursorline = true
+  callback = function()
+    opt_local.cursorline = true
   end
 })
 api.nvim_create_autocmd({ 'InsertLeave', 'WinLeave' }, {
   group = gr_cursorline,
-  callback = function ()
-    o_local.cursorline = false
+  callback = function()
+    opt_local.cursorline = false
   end
 })
 

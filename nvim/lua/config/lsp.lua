@@ -4,7 +4,7 @@ local lsp = vim.lsp
 
 keymap.set('n', '<F3>', lsp.buf.rename, { desc = 'Rename symbol' })
 keymap.set('n', '<F4>', lsp.buf.code_action, { desc = 'Code action' })
-keymap.set('n', 'K', function() lsp.buf.hover { border = 'single', } end, { desc = 'Lsp hover'})
+keymap.set('n', 'K', function() lsp.buf.hover { border = 'single', } end, { desc = 'Lsp hover' })
 keymap.set('n', 'g<CR>', lsp.buf.format, { desc = 'Format buffer' })
 keymap.set('n', 'gD', lsp.buf.declaration, { desc = 'Go to declaration' })
 keymap.set('n', 'g[', diagnostic.goto_prev, { desc = 'Go to previous diagnostic' })
@@ -28,7 +28,7 @@ keymap.del('n', 'gri')
 
 vim.api.nvim_create_autocmd({ 'BufEnter', 'CursorHold', 'InsertLeave' }, {
   pattern = '<buffer>',
-  callback = function ()
+  callback = function()
     lsp.codelens.refresh { bufnr = 0 }
   end
 })

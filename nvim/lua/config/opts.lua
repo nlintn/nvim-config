@@ -66,3 +66,5 @@ if g.neovide ~= nil then
   g.neovide_cursor_animate_command_line = false
   g.neovide_hide_mouse_when_typing = 1
 end
+
+g.default_bg_transparency = true

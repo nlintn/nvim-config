@@ -16,3 +16,7 @@ api.nvim_create_autocmd({ 'InsertLeave', 'WinLeave' }, {
     o_local.cursorline = false
   end
 })
+
+api.nvim_create_autocmd({ 'ColorScheme' }, {
+  callback = utils.bg_transparency_apply_colo
+})

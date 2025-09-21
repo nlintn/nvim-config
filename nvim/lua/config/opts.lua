@@ -1,4 +1,4 @@
-local o = vim.o
+local o = vim.opt
 local g = vim.g
 
 g.mapleader = ' '
@@ -20,8 +20,8 @@ o.scrolloff = 8
 o.sidescrolloff = 8
 o.wrap = false
 
-o.nrformats = 'alpha,bin,hex'
-o.virtualedit = 'block,onemore'
+o.nrformats = { 'alpha', 'bin', 'hex' }
+o.virtualedit = 'block'
 
 o.inccommand = 'split'
 o.incsearch = true
@@ -33,7 +33,7 @@ o.shiftwidth = 0
 o.expandtab = true
 
 o.list = true
-o.listchars='tab:«-»,trail:·,nbsp:␣,extends:⟩,precedes:⟨'
+o.listchars = { tab = '«-»', trail = '·', nbsp = '␣', extends = '⟩', precedes = '⟨' }
 
 o.mouse = 'a'
 o.mousemoveevent = true
@@ -55,7 +55,7 @@ o.foldtext = 'nvim_treesitter#foldtext()'
 o.foldmethod = 'expr'
 o.foldenable = false
 
-o.completeopt = 'menuone,preview,noselect,fuzzy,nosort'
+o.completeopt = { 'menuone', 'preview', 'noselect', 'fuzzy', 'nosort' }
 
 o.undofile = true
 

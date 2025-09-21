@@ -1,4 +1,5 @@
 local api = vim.api
+local bo = vim.bo
 local cmd = vim.cmd
 local fn = vim.fn
 local g = vim.g
@@ -32,6 +33,22 @@ end
 function M.bg_transparency_toggle()
   g.bg_transparency = not g.bg_transparency
   M.bg_transparency_apply()
+end
+
+function M.close_floats()
+  for _, win in ipairs(api.nvim_list_wins()) do
+    if api.nvim_win_get_config(win).relative ~= ''
+        or vim.list_contains({ 'help', 'qf' }, bo[api.nvim_win_get_buf(win)].filetype) then
+      api.nvim_win_close(win, false)
+    end
+  end
+end
+
+function M.close_floats_then(f)
+  return function ()
+    M.close_floats()
+    f()
+  end
 end
 
 function M.update_pwd()

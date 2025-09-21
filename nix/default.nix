@@ -31,12 +31,12 @@ let
     isabelle-syn-nvim
     lazygit-nvim
     lualine-nvim
-    mini-ai
     nvim-autopairs
     nvim-cmp
     nvim-lspconfig
     nvim-navic
     nvim-treesitter.withAllGrammars
+    nvim-treesitter-textobjects
     nvim-web-devicons
     oil-nvim
     orgmode
@@ -51,11 +51,11 @@ let
 
   extraPackages = with pkgs; [
     # Language Servers
+    basedpyright
     clang-tools
     lua-language-server
     nixd
     ocamlPackages.ocaml-lsp
-    ruff
     rust-analyzer
     texlab
     typescript-language-server

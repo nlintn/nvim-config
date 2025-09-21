@@ -1,14 +1,8 @@
-local api = vim.api
 local cmd = vim.cmd
 local keymap = vim.keymap
+local utils = require('utils')
 
-keymap.set('n', '<Esc>', function ()
-  for _, win in ipairs(api.nvim_list_wins()) do
-    if api.nvim_win_get_config(win).relative ~= '' then
-      api.nvim_win_close(win, false)
-    end
-  end
-end, { desc = 'Close floating windows' })
+keymap.set('n', '<Esc>', utils.close_floats, { desc = 'Close floating windows' })
 
 keymap.set({ 'n', 'i', 'v', }, '<Up>', function () cmd.normal('gk') end, { desc = 'Visual line up' })
 keymap.set({ 'n', 'i', 'v', }, '<Down>', function () cmd.normal('gj') end, { desc = 'Visual line down' })

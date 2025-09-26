@@ -43,7 +43,7 @@ require('lualine').setup {
     lualine_b = { 'filename', 'branch', 'diff', 'diagnostics', },
     lualine_c = {
       {
-        function() return navic.get_location() end,
+        navic.get_location,
         cond = navic.is_available,
       },
     },
@@ -51,7 +51,7 @@ require('lualine').setup {
     lualine_y = { 'progress', 'location', },
     lualine_z = {
       {
-        function() return battery.get_status_line() end,
+        battery.get_status_line,
       },
       {
         'datetime',

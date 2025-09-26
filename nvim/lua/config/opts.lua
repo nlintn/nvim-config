@@ -42,8 +42,6 @@ o.mousemodel = 'extend'
 o.conceallevel = 2
 o.concealcursor = 'nc'
 
-o.clipboard = 'unnamedplus'
-
 o.termguicolors = true
 o.signcolumn = 'yes:1'
 o.showmode = false

@@ -52,6 +52,7 @@ let
   extraPackages = with pkgs; [
     # Language Servers
     basedpyright
+    bash-language-server
     clang-tools
     lua-language-server
     nixd
@@ -132,7 +133,7 @@ let
     ++ (lib.optional withSqlite
       ''--set LIBSQLITE "${sqliteLibPath}"'')
   );
-in wrapNeovimUnstable neovim-unwrapped (neovimConfig // {
+in (wrapNeovimUnstable.override { wl-clipboard = null; }) neovim-unwrapped (neovimConfig // {
   luaRcContent = initLua;
   wrapperArgs =
     lib.escapeShellArgs neovimConfig.wrapperArgs

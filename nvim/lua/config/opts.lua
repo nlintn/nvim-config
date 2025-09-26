@@ -58,11 +58,14 @@ o.completeopt = { 'menuone', 'preview', 'noselect', 'fuzzy', 'nosort' }
 o.undofile = true
 
 if g.neovide ~= nil then
-  g.neovide_cursor_animation_length = 0.05
+  g.default_bg_transparency = false
+
+  g.neovide_cursor_animation_length = 0.03
   g.neovide_cursor_trail_size = 0
   g.neovide_cursor_animate_in_insert_mode = false
   g.neovide_cursor_animate_command_line = false
   g.neovide_hide_mouse_when_typing = 1
+  g.neovide_normal_opacity = 0.7
+else
+  g.default_bg_transparency = true
 end
-
-g.default_bg_transparency = true

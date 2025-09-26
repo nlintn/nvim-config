@@ -1,14 +1,14 @@
-From 20acd31d909b3eadbfb214cb406c2f7d40f16add Mon Sep 17 00:00:00 2001
+From 94de5db2fb3297936e19051c6e516fbe3c09f3b6 Mon Sep 17 00:00:00 2001
 From: Nico Lintner <118087966+nlintn@users.noreply.github.com>
 Date: Fri, 8 Aug 2025 17:02:07 +0200
 Subject: [PATCH] color changes
 
 ---
- lua/base16-colorscheme.lua | 236 +++++++++++++++++++------------------
- 1 file changed, 120 insertions(+), 116 deletions(-)
+ lua/base16-colorscheme.lua | 244 +++++++++++++++++++------------------
+ 1 file changed, 124 insertions(+), 120 deletions(-)
 
 diff --git a/lua/base16-colorscheme.lua b/lua/base16-colorscheme.lua
-index 92dfbab..2404a6a 100644
+index 92dfbab..2acad15 100644
 --- a/lua/base16-colorscheme.lua
 +++ b/lua/base16-colorscheme.lua
 @@ -92,7 +92,6 @@ M.highlight = setmetatable({}, {
@@ -46,8 +46,9 @@ index 92dfbab..2404a6a 100644
      hi.SpecialKey                         = { guifg = M.colors.base03, guibg = nil, gui = nil, guisp = nil, ctermfg = M.colors.cterm03, ctermbg = nil }
      hi.TooLong                            = { guifg = M.colors.base08, guibg = nil, gui = nil, guisp = nil, ctermfg = M.colors.cterm08, ctermbg = nil }
 -    hi.Underlined                         = { guifg = M.colors.base08, guibg = nil, gui = nil, guisp = nil, ctermfg = M.colors.cterm08, ctermbg = nil }
+-    hi.Visual                             = { guifg = nil, guibg = M.colors.base02, gui = nil, guisp = nil, ctermfg = nil, ctermbg = M.colors.cterm02 }
 +    hi.Underlined                         = { guifg = nil, guibg = nil, gui = 'underline', guisp = nil, ctermfg = nil, ctermbg = nil }
-     hi.Visual                             = { guifg = nil, guibg = M.colors.base02, gui = nil, guisp = nil, ctermfg = nil, ctermbg = M.colors.cterm02 }
++    hi.Visual                             = { guifg = nil, guibg = M.colors.base03, gui = nil, guisp = nil, ctermfg = nil, ctermbg = M.colors.cterm03 }
      hi.VisualNOS                          = { guifg = M.colors.base08, guibg = nil, gui = nil, guisp = nil, ctermfg = M.colors.cterm08, ctermbg = nil }
      hi.WarningMsg                         = { guifg = M.colors.base08, guibg = nil, gui = nil, guisp = nil, ctermfg = M.colors.cterm08, ctermbg = nil }
      hi.WildMenu                           = { guifg = M.colors.base08, guibg = M.colors.base0A, gui = nil, guisp = nil, ctermfg = M.colors.cterm08, ctermbg = M.colors.cterm0A }
@@ -244,7 +245,7 @@ index 92dfbab..2404a6a 100644
      hi.TSPunctSpecial                     = { guifg = M.colors.base0F, guibg = nil, gui = 'none', guisp = nil, ctermfg = M.colors.cterm0F, ctermbg = nil }
      hi.TSRepeat                           = { guifg = M.colors.base0E, guibg = nil, gui = 'none', guisp = nil, ctermfg = M.colors.cterm0E, ctermbg = nil }
      hi.TSString                           = { guifg = M.colors.base0B, guibg = nil, gui = 'none', guisp = nil, ctermfg = M.colors.cterm0B, ctermbg = nil }
-@@ -365,15 +372,16 @@ function M.setup(colors, config)
+@@ -365,27 +372,32 @@ function M.setup(colors, config)
      hi.TSTagDelimiter                     = { guifg = M.colors.base0F, guibg = nil, gui = 'none', guisp = nil, ctermfg = M.colors.cterm0F, ctermbg = nil }
      hi.TSText                             = { guifg = M.colors.base05, guibg = nil, gui = 'none', guisp = nil, ctermfg = M.colors.cterm05, ctermbg = nil }
      hi.TSStrong                           = { guifg = nil, guibg = nil, gui = 'bold', guisp = nil, ctermfg = nil, ctermbg = nil }
@@ -267,10 +268,11 @@ index 92dfbab..2404a6a 100644
      hi.TSVariableBuiltin                  = { guifg = M.colors.base08, guibg = nil, gui = 'italic', guisp = nil, ctermfg = M.colors.cterm08, ctermbg = nil }
  
      hi.TSDefinition                       = { guifg = nil, guibg = nil, gui = 'underline', guisp = M.colors.base04, ctermfg = nil, ctermbg = nil }
-@@ -381,11 +389,15 @@ function M.setup(colors, config)
+     hi.TSDefinitionUsage                  = { guifg = nil, guibg = nil, gui = 'underline', guisp = M.colors.base04, ctermfg = nil, ctermbg = nil }
      hi.TSCurrentScope                     = { guifg = nil, guibg = nil, gui = 'bold', guisp = nil, ctermfg = nil, ctermbg = nil }
  
-     hi.LspInlayHint                       = { guifg = M.colors.base03, guibg = nil, gui = 'italic', guisp = nil, ctermfg = M.colors.cterm03, ctermbg = nil }
+-    hi.LspInlayHint                       = { guifg = M.colors.base03, guibg = nil, gui = 'italic', guisp = nil, ctermfg = M.colors.cterm03, ctermbg = nil }
++    hi.LspInlayHint                       = { guifg = M.colors.base04, guibg = nil, gui = 'italic', guisp = nil, ctermfg = M.colors.cterm03, ctermbg = nil }
 +    hi.LspEnumMember                      = { guifg = M.colors.base0C, guibg = nil, gui = 'none', guisp = nil, ctermfg = M.colors.cterm0C, ctermbg = nil }
 +    hi.LspPath                            = { guifg = nil, guibg = nil, gui = 'underline', guisp = nil, ctermfg = nil, ctermbg = nil }
 +    hi.LspPropertyDefinition              = { guifg = M.colors.base0D, guibg = nil, gui = 'none', guisp = nil, ctermfg = M.colors.cterm0D, ctermbg = nil }
@@ -401,20 +403,26 @@ index 92dfbab..2404a6a 100644
 +        hi.TelescopePromptPrefix   = { guifg = M.colors.base0B, guibg = nil, gui = nil, guisp = nil }
 +        hi.TelescopePromptTitle    = { guifg = M.colors.base01, guibg = M.colors.base0B, gui = nil, guisp = nil }
 +        hi.TelescopeResultsTitle   = { guifg = M.colors.base01, guibg = M.colors.base09, gui = nil, guisp = nil }
-+        hi.TelescopeSelection      = { guifg = nil, guibg = M.colors.base02, gui = nil, guisp = nil }
-+        hi.TelescopeSelectionCaret = { guifg = M.colors.base09, guibg = M.colors.base02, gui = nil, guisp = nil }
++        hi.TelescopeSelection      = { guifg = nil,             guibg = M.colors.base03, gui = nil, guisp = nil }
++        hi.TelescopeSelectionCaret = { guifg = M.colors.base09, guibg = M.colors.base03, gui = nil, guisp = nil }
      end
  
      if M.config.notify then
-@@ -576,6 +575,8 @@ function M.setup(colors, config)
+@@ -576,10 +575,12 @@ function M.setup(colors, config)
          hi.NotifyTRACEBody   = 'Normal'
      end
  
 +    hi.LazyGitBorder = 'FloatBorder'
 +
      if M.config.indentblankline then
-         hi.IndentBlanklineChar        = { guifg = M.colors.base02, gui = 'nocombine', ctermfg = M.colors.cterm02 }
+-        hi.IndentBlanklineChar        = { guifg = M.colors.base02, gui = 'nocombine', ctermfg = M.colors.cterm02 }
++        hi.IndentBlanklineChar        = { guifg = M.colors.base03, gui = 'nocombine', ctermfg = M.colors.cterm02 }
          hi.IndentBlanklineContextChar = { guifg = M.colors.base04, gui = 'nocombine', ctermfg = M.colors.cterm04  }
+-        hi.IblIndent                  = { guifg = M.colors.base02, gui = 'nocombine', ctermfg = M.colors.cterm02  }
++        hi.IblIndent                  = { guifg = M.colors.base03, gui = 'nocombine', ctermfg = M.colors.cterm02  }
+         hi.IblWhitespace              = 'Whitespace'
+         hi.IblScope                   = { guifg = M.colors.base04, gui = 'nocombine', ctermfg = M.colors.cterm04  }
+     end
 @@ -587,7 +588,7 @@ function M.setup(colors, config)
      if M.config.cmp then
          hi.CmpDocumentationBorder   = { guifg = M.colors.base05, guibg = M.colors.base00, gui = nil, guisp = nil, ctermfg = M.colors.cterm05, ctermbg = M.colors.cterm00 }

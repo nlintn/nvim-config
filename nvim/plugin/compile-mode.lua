@@ -6,4 +6,4 @@ g.compile_mode = {
   baleia_setup = true,
 }
 
-keymap.set({ 'n' }, '<C-c>', cmd.Compile, { desc = 'Compile' })
+keymap.set({ 'n' }, '<C-c>', function() cmd('vert bo Compile') end, { desc = 'Compile' })

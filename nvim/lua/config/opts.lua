@@ -47,6 +47,8 @@ o.signcolumn = 'yes:1'
 o.showmode = false
 o.ruler = false
 o.winborder = 'single'
+o.splitbelow = false
+o.splitright = true
 
 o.foldexpr = 'nvim_treesitter#foldexpr()'
 o.foldtext = 'nvim_treesitter#foldtext()'

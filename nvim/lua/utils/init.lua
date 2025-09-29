@@ -38,7 +38,7 @@ end
 function M.close_floats()
   for _, win in ipairs(api.nvim_list_wins()) do
     if api.nvim_win_get_config(win).relative ~= ''
-        or vim.list_contains({ 'help', 'qf' }, bo[api.nvim_win_get_buf(win)].filetype) then
+        or vim.list_contains({ 'compilation', 'help', 'qf' }, bo[api.nvim_win_get_buf(win)].filetype) then
       api.nvim_win_close(win, false)
     end
   end

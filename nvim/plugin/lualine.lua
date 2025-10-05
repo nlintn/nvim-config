@@ -37,6 +37,7 @@ navic.setup {
 require('lualine').setup {
   options = {
     theme = 'base16',
+    globalstatus = true,
   },
   sections = {
     lualine_a = { 'mode', },
@@ -59,4 +60,8 @@ require('lualine').setup {
       },
     }
   },
+  tabline = {
+    lualine_b = { 'buffers' },
+    lualine_y = { 'tabs' }
+  }
 }

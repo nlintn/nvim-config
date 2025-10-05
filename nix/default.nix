@@ -23,6 +23,7 @@ let
     cmp-nvim-lsp
     cmp-nvim-lsp-document-symbol
     cmp-nvim-lsp-signature-help
+    colorful-winsep-nvim
     compile-mode-nvim
     crates-nvim
     diffview-nvim

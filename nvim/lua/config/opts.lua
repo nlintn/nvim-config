@@ -59,6 +59,9 @@ o.completeopt = { 'menuone', 'preview', 'noselect', 'fuzzy', 'nosort' }
 
 o.undofile = true
 
+o.spelllang = { 'en', 'de' }
+o.spelloptions = { 'camel' }
+
 if g.neovide ~= nil then
   g.default_bg_transparency = false
 

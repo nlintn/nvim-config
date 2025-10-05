@@ -1,14 +1,14 @@
-From 03211611cef7a1cc62d49b42b78962ab8c435c6d Mon Sep 17 00:00:00 2001
+From a8d009b7c4208176c44517c713514fe55be64d43 Mon Sep 17 00:00:00 2001
 From: Nico Lintner <118087966+nlintn@users.noreply.github.com>
 Date: Fri, 8 Aug 2025 17:02:07 +0200
 Subject: [PATCH] color changes
 
 ---
- lua/base16-colorscheme.lua | 256 ++++++++++++++++++++-----------------
- 1 file changed, 136 insertions(+), 120 deletions(-)
+ lua/base16-colorscheme.lua | 268 ++++++++++++++++++++-----------------
+ 1 file changed, 148 insertions(+), 120 deletions(-)
 
 diff --git a/lua/base16-colorscheme.lua b/lua/base16-colorscheme.lua
-index 92dfbab..8b2be77 100644
+index 92dfbab..34d5d79 100644
 --- a/lua/base16-colorscheme.lua
 +++ b/lua/base16-colorscheme.lua
 @@ -92,7 +92,6 @@ M.highlight = setmetatable({}, {
@@ -65,7 +65,7 @@ index 92dfbab..8b2be77 100644
      hi.StatusLine                         = { guifg = M.colors.base05, guibg = M.colors.base02, gui = 'none', guisp = nil, ctermfg = M.colors.cterm05, ctermbg = M.colors.cterm02 }
      hi.StatusLineNC                       = { guifg = M.colors.base04, guibg = M.colors.base01, gui = 'none', guisp = nil, ctermfg = M.colors.cterm04, ctermbg = M.colors.cterm01 }
      hi.WinBar                             = { guifg = M.colors.base05, guibg = nil, gui = 'none', guisp = nil, ctermfg = M.colors.cterm05, ctermbg = nil }
-@@ -184,58 +184,65 @@ function M.setup(colors, config)
+@@ -184,58 +184,75 @@ function M.setup(colors, config)
      hi.ColorColumn                        = { guifg = nil, guibg = M.colors.base01, gui = 'none', guisp = nil, ctermfg = nil, ctermbg = M.colors.cterm01 }
      hi.CursorColumn                       = { guifg = nil, guibg = M.colors.base01, gui = 'none', guisp = nil, ctermfg = nil, ctermbg = M.colors.cterm01 }
      hi.CursorLine                         = { guifg = nil, guibg = M.colors.base01, gui = 'none', guisp = nil, ctermfg = nil, ctermbg = M.colors.cterm01 }
@@ -159,10 +159,20 @@ index 92dfbab..8b2be77 100644
 +    hi.CompileModeMessageRow              = { guifg = M.colors.base0A, guibg = nil, gui = nil, guisp = nil, ctermfg = M.colors.cterm0A, ctermbg = nil }
 +    hi.CompileModeOutputFile              = { guifg = M.colors.base0E, guibg = nil, gui = nil, guisp = nil, ctermfg = M.colors.cterm0E, ctermbg = nil }
 +    hi.CompileModeWarning                 = 'DiagnosticWarn'
++
++    hi.manBold                            = { guifg = M.colors.base08, guibg = nil, gui = 'bold', guisp = nil, ctermfg = M.colors.cterm08, ctermbg = nil }
++    hi.manItalic                          = { guifg = M.colors.base0B, guibg = nil, gui = 'italic', guisp = nil, ctermfg = M.colors.cterm0B, ctermbg = nil }
++    hi.manOptionDesc                      = { guifg = nil, guibg = nil, gui = nil, guisp = nil, ctermfg = nil, ctermbg = nil }
++    hi.manReference                       = { guifg = M.colors.base0A, guibg = nil, gui = 'underline', guisp = nil, ctermfg = M.colors.cterm0A, ctermbg = nil }
++    hi.manSectionHeading                  = { guifg = nil, guibg = nil, gui = nil, guisp = nil, ctermfg = nil, ctermbg = nil }
++    hi.manSubheading                      = { guifg = nil, guibg = nil, gui = nil, guisp = nil, ctermfg = nil, ctermbg = M.colors.cterm0D }
++    hi.manTitle                           = { guifg = M.colors.base0C, guibg = nil, gui = nil, guisp = nil, ctermfg = M.colors.cterm0C, ctermbg = nil }
++    hi.manHeader                          = { guifg = M.colors.base05, guibg = M.colors.base01, gui = 'bold', guisp = nil, ctermfg = M.colors.cterm05, ctermbg = M.colors.cterm01 }
++    hi.manUnderline                       = { guifg = nil, guibg = nil, gui = 'underline', guisp = nil, ctermfg = nil, ctermbg = nil }
  
      -- Diffview.nvim highlighting
      if M.config.diffview then
-@@ -268,7 +275,7 @@ function M.setup(colors, config)
+@@ -268,7 +285,7 @@ function M.setup(colors, config)
          hi.DiffviewStatusUnmerged         = { guifg = M.colors.base0E, guibg = nil, gui = 'bold', guisp = nil, ctermfg = M.colors.cterm0E, ctermbg = nil }
  
          -- Reference highlighting for better GitHub-like diff appearance
@@ -171,7 +181,7 @@ index 92dfbab..8b2be77 100644
          hi.DiffviewDiffDelete             = { guifg = M.colors.base03, guibg = M.colors.base00, gui = nil, guisp = nil, ctermfg = M.colors.cterm03, ctermbg = M.colors.cterm00 }
      end
  
-@@ -289,11 +296,21 @@ function M.setup(colors, config)
+@@ -289,11 +306,21 @@ function M.setup(colors, config)
      hi.gitcommitDiscardedFile             = { guifg = M.colors.base08, guibg = nil, gui = 'bold', guisp = nil, ctermfg = M.colors.cterm08, ctermbg = nil }
      hi.gitcommitSelectedFile              = { guifg = M.colors.base0B, guibg = nil, gui = 'bold', guisp = nil, ctermfg = M.colors.cterm0B, ctermbg = nil }
  
@@ -197,7 +207,7 @@ index 92dfbab..8b2be77 100644
  
      -- Spelling highlighting
      hi.SpellBad                           = { guifg = nil, guibg = nil, gui = 'undercurl', guisp = M.colors.base08, ctermfg = nil, ctermbg = nil }
-@@ -301,8 +318,9 @@ function M.setup(colors, config)
+@@ -301,8 +328,9 @@ function M.setup(colors, config)
      hi.SpellCap                           = { guifg = nil, guibg = nil, gui = 'undercurl', guisp = M.colors.base0D, ctermfg = nil, ctermbg = nil }
      hi.SpellRare                          = { guifg = nil, guibg = nil, gui = 'undercurl', guisp = M.colors.base0E, ctermfg = nil, ctermbg = nil }
  
@@ -208,7 +218,7 @@ index 92dfbab..8b2be77 100644
      hi.DiagnosticInfo                     = { guifg = M.colors.base0D, guibg = nil, gui = 'none', guisp = nil, ctermfg = M.colors.cterm0D, ctermbg = nil }
      hi.DiagnosticHint                     = { guifg = M.colors.base0C, guibg = nil, gui = 'none', guisp = nil, ctermfg = M.colors.cterm0C, ctermbg = nil }
      hi.DiagnosticUnderlineError           = { guifg = nil, guibg = nil, gui = 'undercurl', guisp = M.colors.base08, ctermfg = nil, ctermbg = nil }
-@@ -326,8 +344,8 @@ function M.setup(colors, config)
+@@ -326,8 +354,8 @@ function M.setup(colors, config)
      hi.TSAnnotation                       = { guifg = M.colors.base0F, guibg = nil, gui = 'none', guisp = nil, ctermfg = M.colors.cterm0F, ctermbg = nil }
      hi.TSAttribute                        = { guifg = M.colors.base0A, guibg = nil, gui = 'none', guisp = nil, ctermfg = M.colors.cterm0A, ctermbg = nil }
      hi.TSBoolean                          = { guifg = M.colors.base09, guibg = nil, gui = 'none', guisp = nil, ctermfg = M.colors.cterm09, ctermbg = nil }
@@ -219,7 +229,7 @@ index 92dfbab..8b2be77 100644
      hi.TSConstructor                      = { guifg = M.colors.base0D, guibg = nil, gui = 'none', guisp = nil, ctermfg = M.colors.cterm0D, ctermbg = nil }
      hi.TSConditional                      = { guifg = M.colors.base0E, guibg = nil, gui = 'none', guisp = nil, ctermfg = M.colors.cterm0E, ctermbg = nil }
      hi.TSConstant                         = { guifg = M.colors.base09, guibg = nil, gui = 'none', guisp = nil, ctermfg = M.colors.cterm09, ctermbg = nil }
-@@ -335,26 +353,27 @@ function M.setup(colors, config)
+@@ -335,26 +363,27 @@ function M.setup(colors, config)
      hi.TSConstMacro                       = { guifg = M.colors.base08, guibg = nil, gui = 'none', guisp = nil, ctermfg = M.colors.cterm08, ctermbg = nil }
      hi.TSError                            = { guifg = M.colors.base08, guibg = nil, gui = 'none', guisp = nil, ctermfg = M.colors.cterm08, ctermbg = nil }
      hi.TSException                        = { guifg = M.colors.base08, guibg = nil, gui = 'none', guisp = nil, ctermfg = M.colors.cterm08, ctermbg = nil }
@@ -257,7 +267,7 @@ index 92dfbab..8b2be77 100644
      hi.TSPunctSpecial                     = { guifg = M.colors.base0F, guibg = nil, gui = 'none', guisp = nil, ctermfg = M.colors.cterm0F, ctermbg = nil }
      hi.TSRepeat                           = { guifg = M.colors.base0E, guibg = nil, gui = 'none', guisp = nil, ctermfg = M.colors.cterm0E, ctermbg = nil }
      hi.TSString                           = { guifg = M.colors.base0B, guibg = nil, gui = 'none', guisp = nil, ctermfg = M.colors.cterm0B, ctermbg = nil }
-@@ -365,27 +384,32 @@ function M.setup(colors, config)
+@@ -365,27 +394,32 @@ function M.setup(colors, config)
      hi.TSTagDelimiter                     = { guifg = M.colors.base0F, guibg = nil, gui = 'none', guisp = nil, ctermfg = M.colors.cterm0F, ctermbg = nil }
      hi.TSText                             = { guifg = M.colors.base05, guibg = nil, gui = 'none', guisp = nil, ctermfg = M.colors.cterm05, ctermbg = nil }
      hi.TSStrong                           = { guifg = nil, guibg = nil, gui = 'bold', guisp = nil, ctermfg = nil, ctermbg = nil }
@@ -298,7 +308,7 @@ index 92dfbab..8b2be77 100644
          hi['@preproc']                  = 'PreProc'
          hi['@define']                   = 'Define'
          hi['@operator']                 = 'TSOperator'
-@@ -413,6 +437,7 @@ function M.setup(colors, config)
+@@ -413,6 +447,7 @@ function M.setup(colors, config)
          hi['@keyword.function']         = 'TSKeywordFunction'
          hi['@keyword.operator']         = 'TSKeywordOperator'
          hi['@keyword.return']           = 'TSKeyword'
@@ -306,7 +316,7 @@ index 92dfbab..8b2be77 100644
          hi['@conditional']              = 'TSConditional'
          hi['@repeat']                   = 'TSRepeat'
          hi['@debug']                    = 'Debug'
-@@ -438,6 +463,7 @@ function M.setup(colors, config)
+@@ -438,6 +473,7 @@ function M.setup(colors, config)
          hi['@text.diff.add']            = 'DiffAdd'
          hi['@text.diff.delete']         = 'DiffDelete'
          hi['@text.strong']              = 'TSStrong'
@@ -314,7 +324,7 @@ index 92dfbab..8b2be77 100644
          hi['@text.emphasis']            = 'TSEmphasis'
          hi['@text.underline']           = 'TSUnderline'
          hi['@text.strike']              = 'TSStrike'
-@@ -468,7 +494,6 @@ function M.setup(colors, config)
+@@ -468,7 +504,6 @@ function M.setup(colors, config)
          hi['@diff.delta']               = 'DiffChange'
          hi['@string.special.url']       = '@text.uri'
          hi['@keyword.directive']        = '@preproc'
@@ -322,7 +332,7 @@ index 92dfbab..8b2be77 100644
          hi['@keyword.storage']          = '@storageclass'
          hi['@keyword.conditional']      = '@conditional'
          hi['@keyword.debug']            = '@debug'
-@@ -484,7 +509,7 @@ function M.setup(colors, config)
+@@ -484,7 +519,7 @@ function M.setup(colors, config)
          hi['@markup.strong']            = '@text.strong'
          hi['@markup.italic']            = 'Italic'
          hi['@markup.link']              = '@text.link'
@@ -331,7 +341,7 @@ index 92dfbab..8b2be77 100644
          hi['@markup.heading']           = '@text.title'
          hi['@markup.raw']               = '@text.literal'
          hi['@markup.link']              = '@text.reference'
-@@ -494,22 +519,22 @@ function M.setup(colors, config)
+@@ -494,22 +529,22 @@ function M.setup(colors, config)
      end
  
      if M.config.ts_rainbow then
@@ -365,7 +375,7 @@ index 92dfbab..8b2be77 100644
  
      hi.User1             = { guifg = M.colors.base08, guibg = M.colors.base02, gui = 'none', guisp = nil, ctermfg = M.colors.cterm08, ctermbg = M.colors.cterm02 }
      hi.User2             = { guifg = M.colors.base0E, guibg = M.colors.base02, gui = 'none', guisp = nil, ctermfg = M.colors.cterm0E, ctermbg = M.colors.cterm02 }
-@@ -518,39 +543,25 @@ function M.setup(colors, config)
+@@ -518,39 +553,25 @@ function M.setup(colors, config)
      hi.User5             = { guifg = M.colors.base05, guibg = M.colors.base02, gui = 'none', guisp = nil, ctermfg = M.colors.cterm05, ctermbg = M.colors.cterm02 }
      hi.User6             = { guifg = M.colors.base05, guibg = M.colors.base01, gui = 'none', guisp = nil, ctermfg = M.colors.cterm05, ctermbg = M.colors.cterm01 }
      hi.User7             = { guifg = M.colors.base05, guibg = M.colors.base02, gui = 'none', guisp = nil, ctermfg = M.colors.cterm05, ctermbg = M.colors.cterm02 }
@@ -420,7 +430,7 @@ index 92dfbab..8b2be77 100644
      end
  
      if M.config.notify then
-@@ -576,10 +587,12 @@ function M.setup(colors, config)
+@@ -576,10 +597,12 @@ function M.setup(colors, config)
          hi.NotifyTRACEBody   = 'Normal'
      end
  
@@ -435,7 +445,7 @@ index 92dfbab..8b2be77 100644
          hi.IblWhitespace              = 'Whitespace'
          hi.IblScope                   = { guifg = M.colors.base04, gui = 'nocombine', ctermfg = M.colors.cterm04  }
      end
-@@ -587,7 +600,7 @@ function M.setup(colors, config)
+@@ -587,7 +610,7 @@ function M.setup(colors, config)
      if M.config.cmp then
          hi.CmpDocumentationBorder   = { guifg = M.colors.base05, guibg = M.colors.base00, gui = nil, guisp = nil, ctermfg = M.colors.cterm05, ctermbg = M.colors.cterm00 }
          hi.CmpDocumentation         = { guifg = M.colors.base05, guibg = M.colors.base00, gui = nil, guisp = nil, ctermfg = M.colors.cterm05, ctermbg = M.colors.cterm00 }
@@ -444,7 +454,7 @@ index 92dfbab..8b2be77 100644
          hi.CmpItemAbbrDeprecated    = { guifg = M.colors.base03, guibg = nil, gui = 'strikethrough', guisp = nil, ctermfg = M.colors.cterm03, ctermbg = nil }
          hi.CmpItemAbbrMatch         = { guifg = M.colors.base0D, guibg = nil, gui = nil, guisp = nil, ctermfg = M.colors.cterm0D, ctermbg = nil }
          hi.CmpItemAbbrMatchFuzzy    = { guifg = M.colors.base0D, guibg = nil, gui = nil, guisp = nil, ctermfg = M.colors.cterm0D, ctermbg = nil }
-@@ -608,10 +621,10 @@ function M.setup(colors, config)
+@@ -608,10 +631,10 @@ function M.setup(colors, config)
          hi.CmpItemKindEnum          = { guifg = M.colors.base0A, guibg = nil, gui = nil, guisp = nil, ctermfg = M.colors.cterm0A, ctermbg = nil }
          hi.CmpItemKindUnit          = { guifg = M.colors.base0A, guibg = nil, gui = nil, guisp = nil, ctermfg = M.colors.cterm0A, ctermbg = nil }
          hi.CmpItemKindModule        = { guifg = M.colors.base05, guibg = nil, gui = nil, guisp = nil, ctermfg = M.colors.cterm05, ctermbg = nil }
@@ -458,7 +468,7 @@ index 92dfbab..8b2be77 100644
          hi.CmpItemKindOperator      = { guifg = M.colors.base05, guibg = nil, gui = nil, guisp = nil, ctermfg = M.colors.cterm05, ctermbg = nil }
          hi.CmpItemKindSnippet       = { guifg = M.colors.base04, guibg = nil, gui = nil, guisp = nil, ctermfg = M.colors.cterm04, ctermbg = nil }
      end
-@@ -626,7 +639,7 @@ function M.setup(colors, config)
+@@ -626,7 +649,7 @@ function M.setup(colors, config)
          hi['@class'] = 'TSType'
          hi['@struct'] = 'TSType'
          hi['@enum'] = 'TSType'
@@ -467,7 +477,7 @@ index 92dfbab..8b2be77 100644
          hi['@event'] = 'Identifier'
          hi['@interface'] = 'Structure'
          hi['@modifier'] = 'Identifier'
-@@ -643,11 +656,14 @@ function M.setup(colors, config)
+@@ -643,11 +666,14 @@ function M.setup(colors, config)
          hi['@lsp.type.parameter'] = '@parameter'
          hi['@lsp.type.variable'] = '@variable'
          hi['@lsp.type.property'] = '@property'
@@ -484,6 +494,15 @@ index 92dfbab..8b2be77 100644
      end
  
      if M.config.mini_completion then
+@@ -700,6 +726,8 @@ function M.setup(colors, config)
+         hi.DapUIStepOutNC = { guifg = M.colors.base0D, ctermfg = M.colors.cterm0D }
+     end
+ 
++    hi.ColorfulWinSep = { guifg = M.colors.base0E, ctermfg = M.colors.cterm0E }
++
+ 
+     vim.g.terminal_color_0  = M.colors.base00
+     vim.g.terminal_color_1  = M.colors.base08
 -- 
 2.51.0
 

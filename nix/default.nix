@@ -35,6 +35,7 @@ let
     lualine-nvim
     nvim-autopairs
     nvim-cmp
+    nvim-cursorline
     nvim-lspconfig
     nvim-navic
     nvim-treesitter.withAllGrammars

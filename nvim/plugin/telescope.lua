@@ -37,6 +37,6 @@ telescope.load_extension('fzf')
 
 telescope.load_extension('telescope-tabs')
 local tele_tabs = require('telescope-tabs')
-keymap.set('n', '<leader>tt', utils.close_floats_then(tele_tabs.list_tabs), { desc = 'Telescope: list tabs' })
+keymap.set('n', '<leader>ft', utils.close_floats_then(tele_tabs.list_tabs), { desc = 'Telescope: find tabs' })
 
 telescope.load_extension('ui-select')

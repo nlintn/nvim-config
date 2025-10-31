@@ -1,4 +1,4 @@
-From a8d009b7c4208176c44517c713514fe55be64d43 Mon Sep 17 00:00:00 2001
+From 8433473de21599485a5cca0bbb07e017a2be075b Mon Sep 17 00:00:00 2001
 From: Nico Lintner <118087966+nlintn@users.noreply.github.com>
 Date: Fri, 8 Aug 2025 17:02:07 +0200
 Subject: [PATCH] color changes
@@ -8,7 +8,7 @@ Subject: [PATCH] color changes
  1 file changed, 148 insertions(+), 120 deletions(-)
 
 diff --git a/lua/base16-colorscheme.lua b/lua/base16-colorscheme.lua
-index 92dfbab..34d5d79 100644
+index 92dfbab..4e41e9e 100644
 --- a/lua/base16-colorscheme.lua
 +++ b/lua/base16-colorscheme.lua
 @@ -92,7 +92,6 @@ M.highlight = setmetatable({}, {
@@ -25,7 +25,7 @@ index 92dfbab..34d5d79 100644
      hi.Directory                          = { guifg = M.colors.base0D, guibg = nil, gui = nil, guisp = nil, ctermfg = M.colors.cterm0D, ctermbg = nil }
 -    hi.Error                              = { guifg = M.colors.base08, guibg = M.colors.base00, gui = nil, guisp = nil, ctermfg = M.colors.cterm08, ctermbg = M.colors.cterm00 }
 -    hi.ErrorMsg                           = { guifg = M.colors.base08, guibg = M.colors.base00, gui = nil, guisp = nil, ctermfg = M.colors.cterm08, ctermbg = M.colors.cterm00 }
-+    hi.CurSearch                          = { guifg = M.colors.base01, guibg = M.colors.base09, gui = 'none', guisp = nil, ctermfg = M.colors.cterm01, ctermbg = M.colors.cterm09 }
++    hi.CurSearch                          = { guifg = M.colors.base01, guibg = M.colors.base08, gui = 'none', guisp = nil, ctermfg = M.colors.cterm01, ctermbg = M.colors.cterm08 }
 +    hi.Error                              = { guifg = M.colors.base08, guibg = nil, gui = nil, guisp = nil, ctermfg = M.colors.cterm08, ctermbg = nil }
 +    hi.ErrorMsg                           = { guifg = M.colors.base08, guibg = nil, gui = nil, guisp = nil, ctermfg = M.colors.cterm08, ctermbg = nil}
      hi.Exception                          = { guifg = M.colors.base08, guibg = nil, gui = nil, guisp = nil, ctermfg = M.colors.cterm08, ctermbg = nil }

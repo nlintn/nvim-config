@@ -51,7 +51,6 @@ oil.setup {
   delete_to_trash = true,
   keymaps = {
     ['<C-CR>'] = { 'actions.select', opts = { tab = true } },
-    ['<C-c>']  = false,
   },
   view_options = {
     show_hidden = true,

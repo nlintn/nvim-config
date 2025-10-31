@@ -44,6 +44,7 @@ let
     oil-nvim
     orgmode
     rainbow-delimiters-nvim
+    render-markdown-nvim
     telescope-fzf-native-nvim
     telescope-nvim
     telescope-tabs

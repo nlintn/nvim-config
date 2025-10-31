@@ -67,6 +67,7 @@ let
 
     # Misc
     curlMinimal
+    diffutils
     fd
     findutils
     git
@@ -88,13 +89,6 @@ let
   viAlias = false;
   vimAlias = false;
 
-  neovimConfig = neovimUtils.makeNeovimConfig {
-    inherit
-      plugins
-      extraPython3Packages extraLuaPackages withNodeJs withRuby withPython3
-      viAlias vimAlias;
-  };
-
   rtp = stdenv.mkDerivation {
     name = "rtp";
     src = ../nvim;
@@ -105,9 +99,9 @@ let
     '';
   };
 
-  initLua = ''
+  customLuaRC = ''
     ${lib.optionalString buildAppImage ''
-      vim.o.shell = '/bin/sh'
+      vim.o.shell = '${lib.getExe pkgs.bashInteractive}'
       vim.g.lazygit_use_custom_config_file_path = 1
       vim.g.lazygit_config_file_path = '${writeText "lazygit-cfg" ''
         git:
@@ -128,19 +122,29 @@ let
     sqliteLibExt = stdenv.hostPlatform.extensions.sharedLibrary;
     sqliteLibPath = "${sqlite.out}/lib/libsqlite3${sqliteLibExt}";
     extraPackages' = extraPackages ++ (lib.optionals withSqlite [ sqlite ]);
-  in builtins.concatStringsSep " " (
-    (lib.optional (extraPackages' != [])
-      ''--prefix PATH : "${lib.makeBinPath extraPackages'}"'')
-    ++ (lib.optional withSqlite
-      ''--set LIBSQLITE_CLIB_PATH "${sqliteLibPath}"'')
-    ++ (lib.optional withSqlite
-      ''--set LIBSQLITE "${sqliteLibPath}"'')
+  in (
+    (lib.optionals (extraPackages' != []) [
+      "--prefix" "PATH" ":" (lib.makeBinPath extraPackages')
+    ]) ++ (lib.optionals withSqlite [
+      "--set" "LIBSQLITE_CLIB_PATH" sqliteLibPath
+      "--set" "LIBSQLITE" sqliteLibPath
+    ])
   );
-in (wrapNeovimUnstable.override { wl-clipboard = null; }) neovim-unwrapped (neovimConfig // {
-  luaRcContent = initLua;
-  wrapperArgs =
-    lib.escapeShellArgs neovimConfig.wrapperArgs
-    + " "
-    + extraMakeWrapperArgs;
-  wrapRc = true;
-})
+
+  neovimConfig = let
+    cfg = neovimUtils.makeNeovimConfig {
+      wrapRc = true;
+      inherit
+        customLuaRC
+        plugins
+        extraPython3Packages extraLuaPackages withNodeJs withRuby withPython3
+        viAlias vimAlias;
+    };
+  in cfg // {
+    wrapperArgs = cfg.wrapperArgs ++ extraMakeWrapperArgs;
+  };
+
+  wrapperOverrides = lib.optionalAttrs buildAppImage {
+    wl-clipboard = null;
+  };
+in (wrapNeovimUnstable.override wrapperOverrides) neovim-unwrapped neovimConfig

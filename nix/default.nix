@@ -31,7 +31,6 @@ let
     indent-blankline-nvim-lua
     isabelle-lsp-nvim
     isabelle-syn-nvim
-    lazygit-nvim
     lualine-nvim
     nvim-autopairs
     nvim-cmp
@@ -72,7 +71,6 @@ let
     fd
     findutils
     git
-    lazygit
     mercurial
     ripgrep
   ];
@@ -103,11 +101,6 @@ let
   customLuaRC = ''
     ${lib.optionalString buildAppImage ''
       vim.o.shell = '${lib.getExe pkgs.bashInteractive}'
-      vim.g.lazygit_use_custom_config_file_path = 1
-      vim.g.lazygit_config_file_path = '${writeText "lazygit-cfg" ''
-        git:
-          overrideGpg: true
-      ''}'
     ''}
     ${lib.optionalString (base16-palette != null) ''
       vim.g.base16_palette = { ${ lib.foldl (acc: {name, value}: acc + "${name} = '#${value}',") "" (lib.attrsToList base16-palette)} }

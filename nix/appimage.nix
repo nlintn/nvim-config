@@ -1,13 +1,8 @@
 { callPackage
 , mkNixAppImageBundle
-, ...
-} @ args:
+, passthruArgs ? {}
+}:
 
-let
-  fn = import ./.;
-in
-  mkNixAppImageBundle (
-    callPackage fn (builtins.intersectAttrs
-      (builtins.functionArgs fn) ({ buildAppImage = true; } // args)
-    )
-  )
+mkNixAppImageBundle (
+  callPackage ./. ({buildAppImage = true; } // passthruArgs)
+)

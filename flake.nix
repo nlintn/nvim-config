@@ -10,7 +10,7 @@
         nvim-appimage = pkgs.callPackage ./nix/appimage.nix {};
         default = nvim;
       });
-      overlays.default = ./nix/overlay.nix;
+      overlays.default = import ./nix/overlay.nix;
     };
 
   inputs = {

@@ -50,10 +50,7 @@ o.winborder = 'single'
 o.splitbelow = false
 o.splitright = true
 
-o.foldexpr = 'nvim_treesitter#foldexpr()'
-o.foldtext = 'nvim_treesitter#foldtext()'
-o.foldmethod = 'expr'
-o.foldenable = false
+o.foldlevel = 10
 
 o.completeopt = { 'menuone', 'preview', 'noselect', 'fuzzy', 'nosort' }
 

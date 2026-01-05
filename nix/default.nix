@@ -71,8 +71,10 @@ let
     fd
     findutils
     git
+    gnutar
     mercurial
     ripgrep
+    tree-sitter
   ];
 
   extraLuaPackages = p: [];

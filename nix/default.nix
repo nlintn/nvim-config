@@ -7,7 +7,6 @@
 , sqlite
 , vimPlugins
 , wrapNeovimUnstable
-, writeText
 
 , buildAppImage ? false
 , base16-palette ? null
@@ -16,6 +15,7 @@
 let
   plugins = with vimPlugins; [
     (callPackage ./base16-nvim {})
+    baleia-nvim
     battery-nvim
     cmp-async-path
     cmp-buffer

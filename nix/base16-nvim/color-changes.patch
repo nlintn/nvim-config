@@ -1,14 +1,14 @@
-From c9e67912f56ddab3119d2492cedf47957da4d400 Mon Sep 17 00:00:00 2001
+From b032f439ab87260ef7b86fbd6457b6cdcfeec2d8 Mon Sep 17 00:00:00 2001
 From: Nico Lintner <118087966+nlintn@users.noreply.github.com>
 Date: Fri, 8 Aug 2025 17:02:07 +0200
 Subject: [PATCH] color changes
 
 ---
- lua/base16-colorscheme.lua | 268 ++++++++++++++++++++-----------------
- 1 file changed, 147 insertions(+), 121 deletions(-)
+ lua/base16-colorscheme.lua | 276 ++++++++++++++++++++-----------------
+ 1 file changed, 151 insertions(+), 125 deletions(-)
 
 diff --git a/lua/base16-colorscheme.lua b/lua/base16-colorscheme.lua
-index 92dfbab..64392de 100644
+index 92dfbab..1e21706 100644
 --- a/lua/base16-colorscheme.lua
 +++ b/lua/base16-colorscheme.lua
 @@ -92,7 +92,6 @@ M.highlight = setmetatable({}, {
@@ -79,7 +79,8 @@ index 92dfbab..64392de 100644
 +    hi.PMenu                              = { guifg = M.colors.base05, guibg = nil, gui = 'none', guisp = nil, ctermfg = M.colors.cterm05, ctermbg = M.colors.cterm01 }
      hi.PMenuSel                           = { guifg = M.colors.base01, guibg = M.colors.base05, gui = nil, guisp = nil, ctermfg = M.colors.cterm01, ctermbg = M.colors.cterm05 }
      hi.TabLine                            = { guifg = M.colors.base03, guibg = M.colors.base01, gui = 'none', guisp = nil, ctermfg = M.colors.cterm03, ctermbg = M.colors.cterm01 }
-     hi.TabLineFill                        = { guifg = M.colors.base03, guibg = M.colors.base01, gui = 'none', guisp = nil, ctermfg = M.colors.cterm03, ctermbg = M.colors.cterm01 }
+-    hi.TabLineFill                        = { guifg = M.colors.base03, guibg = M.colors.base01, gui = 'none', guisp = nil, ctermfg = M.colors.cterm03, ctermbg = M.colors.cterm01 }
++    hi.TabLineFill                        = { guifg = M.colors.base03, guibg = nil, gui = 'none', guisp = nil, ctermfg = M.colors.cterm03, ctermbg = nil }
      hi.TabLineSel                         = { guifg = M.colors.base0B, guibg = M.colors.base01, gui = 'none', guisp = nil, ctermfg = M.colors.cterm0B, ctermbg = M.colors.cterm01 }
 +    hi.WinSeparator                       = { guifg = M.colors.base01, guibg = nil, gui = nil, guisp = nil, ctermfg = M.colors.cterm01, ctermbg = nil }
  
@@ -209,7 +210,7 @@ index 92dfbab..64392de 100644
  
      -- Spelling highlighting
      hi.SpellBad                           = { guifg = nil, guibg = nil, gui = 'undercurl', guisp = M.colors.base08, ctermfg = nil, ctermbg = nil }
-@@ -301,8 +328,9 @@ function M.setup(colors, config)
+@@ -301,14 +328,15 @@ function M.setup(colors, config)
      hi.SpellCap                           = { guifg = nil, guibg = nil, gui = 'undercurl', guisp = M.colors.base0D, ctermfg = nil, ctermbg = nil }
      hi.SpellRare                          = { guifg = nil, guibg = nil, gui = 'undercurl', guisp = M.colors.base0E, ctermfg = nil, ctermbg = nil }
  
@@ -220,6 +221,15 @@ index 92dfbab..64392de 100644
      hi.DiagnosticInfo                     = { guifg = M.colors.base0D, guibg = nil, gui = 'none', guisp = nil, ctermfg = M.colors.cterm0D, ctermbg = nil }
      hi.DiagnosticHint                     = { guifg = M.colors.base0C, guibg = nil, gui = 'none', guisp = nil, ctermfg = M.colors.cterm0C, ctermbg = nil }
      hi.DiagnosticUnderlineError           = { guifg = nil, guibg = nil, gui = 'undercurl', guisp = M.colors.base08, ctermfg = nil, ctermbg = nil }
+-    hi.DiagnosticUnderlineWarning         = { guifg = nil, guibg = nil, gui = 'undercurl', guisp = M.colors.base0E, ctermfg = nil, ctermbg = nil }
+-    hi.DiagnosticUnderlineWarn            = { guifg = nil, guibg = nil, gui = 'undercurl', guisp = M.colors.base0E, ctermfg = nil, ctermbg = nil }
+-    hi.DiagnosticUnderlineInformation     = { guifg = nil, guibg = nil, gui = 'undercurl', guisp = M.colors.base0F, ctermfg = nil, ctermbg = nil }
++    hi.DiagnosticUnderlineWarning         = { guifg = nil, guibg = nil, gui = 'undercurl', guisp = M.colors.base0A, ctermfg = nil, ctermbg = nil }
++    hi.DiagnosticUnderlineWarn            = { guifg = nil, guibg = nil, gui = 'undercurl', guisp = M.colors.base0A, ctermfg = nil, ctermbg = nil }
++    hi.DiagnosticUnderlineInformation     = { guifg = nil, guibg = nil, gui = 'undercurl', guisp = M.colors.base0E, ctermfg = nil, ctermbg = nil }
+     hi.DiagnosticUnderlineHint            = { guifg = nil, guibg = nil, gui = 'undercurl', guisp = M.colors.base0C, ctermfg = nil, ctermbg = nil }
+ 
+     hi.LspReferenceText                   = { guifg = nil, guibg = nil, gui = 'underline', guisp = M.colors.base04, ctermfg = nil, ctermbg = nil }
 @@ -326,8 +354,8 @@ function M.setup(colors, config)
      hi.TSAnnotation                       = { guifg = M.colors.base0F, guibg = nil, gui = 'none', guisp = nil, ctermfg = M.colors.cterm0F, ctermbg = nil }
      hi.TSAttribute                        = { guifg = M.colors.base0A, guibg = nil, gui = 'none', guisp = nil, ctermfg = M.colors.cterm0A, ctermbg = nil }
@@ -288,7 +298,7 @@ index 92dfbab..64392de 100644
 +    hi.TSURI                              = { guifg = M.colors.base0C, guibg = nil, gui = 'underline', guisp = nil, ctermfg = M.colors.cterm09, ctermbg = nil }
 +    hi.TSType                             = { guifg = M.colors.base0A, guibg = nil, gui = 'italic', guisp = nil, ctermfg = M.colors.cterm0A, ctermbg = nil }
 +    hi.TSTypeBuiltin                      = { guifg = M.colors.base0E, guibg = nil, gui = 'italic', guisp = nil, ctermfg = M.colors.cterm0A, ctermbg = nil }
-+    hi.TSVariable                         = { guifg = M.colors.base05, guibg = nil, gui = 'none', guisp = nil, ctermfg = M.colors.cterm08, ctermbg = nil }
++    hi.TSVariable                         = { guifg = nil, guibg = nil, gui = 'none', guisp = nil, ctermfg = nil, ctermbg = nil }
      hi.TSVariableBuiltin                  = { guifg = M.colors.base08, guibg = nil, gui = 'italic', guisp = nil, ctermfg = M.colors.cterm08, ctermbg = nil }
  
      hi.TSDefinition                       = { guifg = nil, guibg = nil, gui = 'underline', guisp = M.colors.base04, ctermfg = nil, ctermbg = nil }
@@ -503,5 +513,5 @@ index 92dfbab..64392de 100644
      vim.g.terminal_color_0  = M.colors.base00
      vim.g.terminal_color_1  = M.colors.base08
 -- 
-2.51.2
+2.52.0
 

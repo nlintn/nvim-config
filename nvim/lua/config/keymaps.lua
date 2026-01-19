@@ -9,8 +9,6 @@ keymap.set({ 'n', 'i', 'v', }, '<Down>', function() cmd.normal('gj') end, { desc
 
 keymap.set({ 'n', 'i', 'v', }, '<C-ö>', cmd.tabprev, { desc = 'Previous tab' })
 keymap.set({ 'n', 'i', 'v', }, '<C-ä>', cmd.tabnext, { desc = 'Next tab' })
-keymap.set({ 'n', 'v', }, '<S-Tab>', cmd.bprev, { desc = 'Previous buffer' })
-keymap.set({ 'n', 'v', }, '<Tab>', cmd.bnext, { desc = 'Next buffer' })
 
 keymap.set({ 'n', 'v' }, '<leader>p', '"+p')
 keymap.set({ 'n', 'v' }, '<leader>P', '"+P')

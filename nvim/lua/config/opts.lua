@@ -49,6 +49,7 @@ o.ruler = false
 o.winborder = 'single'
 o.splitbelow = false
 o.splitright = true
+o.cmdheight = 0
 
 o.foldlevel = 10
 

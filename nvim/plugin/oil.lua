@@ -20,7 +20,15 @@ oil.setup {
         ['file']      = '.',
         ['link']      = 'l',
       },
-      highlight = 'NonText',
+      highlight = function (type)
+        if type == 'd' then
+          return 'Directory'
+        elseif type == 'l' then
+          return 'Special'
+        else
+          return 'Normal'
+        end
+      end
     },
     {
       'permissions',

@@ -25,6 +25,7 @@ let
     cmp-nvim-lsp-signature-help
     colorful-winsep-nvim
     compile-mode-nvim
+    conform-nvim
     crates-nvim
     diffview-nvim
     gitsigns-nvim
@@ -65,6 +66,14 @@ let
     texlab
     typescript-language-server
     vscode-langservers-extracted
+
+    # Formatters
+    jq
+    nixfmt
+    prettierd
+    ruff
+    shfmt
+    stylua
 
     # Misc
     curlMinimal

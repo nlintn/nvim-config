@@ -11,8 +11,6 @@ api.nvim_create_autocmd({ 'LspAttach' }, {
       { desc = 'Code action', buffer = true })
     keymap.set({ 'n' }, 'K', function() lsp.buf.hover { border = 'single', } end,
       { desc = 'Lsp hover', buffer = true })
-    keymap.set({ 'n' }, 'g<CR>', lsp.buf.format,
-      { desc = 'Format buffer', buffer = true })
     keymap.set({ 'n' }, 'gD', lsp.buf.declaration,
       { desc = 'Go to declaration', buffer = true })
     keymap.set({ 'n' }, 'g[', diagnostic.goto_prev,

@@ -1,1 +1,1 @@
-final: prev: { neovim = prev.callPackage ./. {}; }
+final: prev: { neovim = prev.callPackage ./. { }; }

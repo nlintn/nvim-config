@@ -1,20 +1,21 @@
-{ callPackage
-, lib
-, neovimUtils
-, neovim-unwrapped
-, pkgs
-, stdenv
-, sqlite
-, vimPlugins
-, wrapNeovimUnstable
+{
+  callPackage,
+  lib,
+  neovimUtils,
+  neovim-unwrapped,
+  pkgs,
+  stdenv,
+  sqlite,
+  vimPlugins,
+  wrapNeovimUnstable,
 
-, buildAppImage ? false
-, base16-palette ? null
+  buildAppImage ? false,
+  base16-palette ? null,
 }:
 
 let
   plugins = with vimPlugins; [
-    (callPackage ./base16-nvim {})
+    (callPackage ./base16-nvim { })
     baleia-nvim
     battery-nvim
     cmp-async-path
@@ -58,7 +59,8 @@ let
     basedpyright
     bash-language-server
     clang-tools
-    go gopls
+    go
+    gopls
     lua-language-server
     nixd
     ocamlPackages.ocaml-lsp
@@ -87,12 +89,12 @@ let
     tree-sitter
   ];
 
-  extraLuaPackages = p: [];
+  extraLuaPackages = p: [ ];
 
   withNodeJs = false;
 
   withPython3 = false;
-  extraPython3Packages = p: [];
+  extraPython3Packages = p: [ ];
 
   withRuby = false;
   withSqlite = false;
@@ -115,42 +117,64 @@ let
       vim.o.shell = '${lib.getExe pkgs.bashInteractive}'
     ''}
     ${lib.optionalString (base16-palette != null) ''
-      vim.g.base16_palette = { ${ lib.foldl (acc: {name, value}: acc + "${name} = '#${value}',") "" (lib.attrsToList base16-palette)} }
+      vim.g.base16_palette = { ${
+        lib.foldl (acc: { name, value }: acc + "${name} = '#${value}',") "" (lib.attrsToList base16-palette)
+      } }
     ''}
 
     vim.opt.rtp:prepend('${rtp}')
     vim.opt.rtp:prepend('${rtp}/after')
 
-    ${builtins.readFile ../nvim/init.lua}
+    ${lib.readFile ../nvim/init.lua}
   '';
 
-  extraMakeWrapperArgs = let
-    sqliteLibExt = stdenv.hostPlatform.extensions.sharedLibrary;
-    sqliteLibPath = "${sqlite.out}/lib/libsqlite3${sqliteLibExt}";
-    extraPackages' = extraPackages ++ (lib.optionals withSqlite [ sqlite ]);
-  in (
-    (lib.optionals (extraPackages' != []) [
-      "--prefix" "PATH" ":" (lib.makeBinPath extraPackages')
-    ]) ++ (lib.optionals withSqlite [
-      "--set" "LIBSQLITE_CLIB_PATH" sqliteLibPath
-      "--set" "LIBSQLITE" sqliteLibPath
-    ])
-  );
+  extraMakeWrapperArgs =
+    let
+      sqliteLibExt = stdenv.hostPlatform.extensions.sharedLibrary;
+      sqliteLibPath = "${sqlite.out}/lib/libsqlite3${sqliteLibExt}";
+      extraPackages' = extraPackages ++ (lib.optionals withSqlite [ sqlite ]);
+    in
+    (
+      (lib.optionals (extraPackages' != [ ]) [
+        "--prefix"
+        "PATH"
+        ":"
+        (lib.makeBinPath extraPackages')
+      ])
+      ++ (lib.optionals withSqlite [
+        "--set"
+        "LIBSQLITE_CLIB_PATH"
+        sqliteLibPath
+        "--set"
+        "LIBSQLITE"
+        sqliteLibPath
+      ])
+    );
 
-  neovimConfig = let
-    cfg = neovimUtils.makeNeovimConfig {
-      wrapRc = true;
-      inherit
-        customLuaRC
-        plugins
-        extraPython3Packages extraLuaPackages withNodeJs withRuby withPython3
-        viAlias vimAlias;
+  neovimConfig =
+    let
+      cfg = neovimUtils.makeNeovimConfig {
+        wrapRc = true;
+        inherit
+          customLuaRC
+          plugins
+          extraPython3Packages
+          extraLuaPackages
+          withNodeJs
+          withRuby
+          withPython3
+          viAlias
+          vimAlias
+          ;
+      };
+    in
+    cfg
+    // {
+      wrapperArgs = cfg.wrapperArgs ++ extraMakeWrapperArgs;
     };
-  in cfg // {
-    wrapperArgs = cfg.wrapperArgs ++ extraMakeWrapperArgs;
-  };
 
   wrapperOverrides = lib.optionalAttrs buildAppImage {
     wl-clipboard = null;
   };
-in (wrapNeovimUnstable.override wrapperOverrides) neovim-unwrapped neovimConfig
+in
+(wrapNeovimUnstable.override wrapperOverrides) neovim-unwrapped neovimConfig

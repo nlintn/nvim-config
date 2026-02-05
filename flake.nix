@@ -1,15 +1,25 @@
 {
-  outputs = { nixpkgs, nixpkgs-overlay, ... }:
+  outputs =
+    { nixpkgs, nixpkgs-overlay, ... }:
     let
       lib' = nixpkgs-overlay.lib;
-    in {
-      packages = lib'.eachSystem nixpkgs (system: let
-        pkgs = import nixpkgs { inherit system; overlays = [ nixpkgs-overlay.overlays.default ]; config.allowUnfree = true; };
-      in rec {
-        nvim = pkgs.callPackage ./nix {};
-        nvim-appimage = pkgs.callPackage ./nix/appimage.nix {};
-        default = nvim;
-      });
+    in
+    {
+      packages = lib'.eachSystem nixpkgs (
+        system:
+        let
+          pkgs = import nixpkgs {
+            inherit system;
+            overlays = [ nixpkgs-overlay.overlays.default ];
+            config.allowUnfree = true;
+          };
+        in
+        rec {
+          nvim = pkgs.callPackage ./nix { };
+          nvim-appimage = pkgs.callPackage ./nix/appimage.nix { };
+          default = nvim;
+        }
+      );
       overlays.default = import ./nix/overlay.nix;
     };
 

@@ -1,8 +1,7 @@
-{ callPackage
-, mkNixAppImageBundle
-, passthruArgs ? {}
+{
+  callPackage,
+  mkNixAppImageBundle,
+  passthruArgs ? { },
 }:
 
-mkNixAppImageBundle (
-  callPackage ./. ({buildAppImage = true; } // passthruArgs)
-)
+mkNixAppImageBundle (callPackage ./. ({ buildAppImage = true; } // passthruArgs))

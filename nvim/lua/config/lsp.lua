@@ -71,6 +71,7 @@ lsp.enable {
   'clangd',
   'cssls',
   'eslint',
+  'gopls',
   'html',
   'isabelle',
   'jsonls',

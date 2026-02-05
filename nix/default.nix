@@ -57,6 +57,7 @@ let
     basedpyright
     bash-language-server
     clang-tools
+    go gopls
     lua-language-server
     nixd
     ocamlPackages.ocaml-lsp

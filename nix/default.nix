@@ -39,8 +39,9 @@ let
     nvim-cursorline
     nvim-lspconfig
     nvim-navic
-    nvim-treesitter.withAllGrammars
+    nvim-treesitter-context
     nvim-treesitter-textobjects
+    nvim-treesitter.withAllGrammars
     nvim-web-devicons
     oil-nvim
     orgmode

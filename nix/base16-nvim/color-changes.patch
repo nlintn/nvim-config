@@ -1,14 +1,14 @@
-From b032f439ab87260ef7b86fbd6457b6cdcfeec2d8 Mon Sep 17 00:00:00 2001
+From ec1f8d02d99552748aacc91c48f112aa9b7826f4 Mon Sep 17 00:00:00 2001
 From: Nico Lintner <118087966+nlintn@users.noreply.github.com>
 Date: Fri, 8 Aug 2025 17:02:07 +0200
 Subject: [PATCH] color changes
 
 ---
- lua/base16-colorscheme.lua | 276 ++++++++++++++++++++-----------------
- 1 file changed, 151 insertions(+), 125 deletions(-)
+ lua/base16-colorscheme.lua | 278 ++++++++++++++++++++-----------------
+ 1 file changed, 152 insertions(+), 126 deletions(-)
 
 diff --git a/lua/base16-colorscheme.lua b/lua/base16-colorscheme.lua
-index 92dfbab..1e21706 100644
+index 92dfbab..1c219f3 100644
 --- a/lua/base16-colorscheme.lua
 +++ b/lua/base16-colorscheme.lua
 @@ -92,7 +92,6 @@ M.highlight = setmetatable({}, {
@@ -396,7 +396,8 @@ index 92dfbab..1e21706 100644
 +    hi.User8             = { guifg = M.colors.base01, guibg = M.colors.base02, gui = 'none', guisp = nil, ctermfg = M.colors.cterm01, ctermbg = M.colors.cterm02 }
 +    hi.User9             = { guifg = M.colors.base01, guibg = M.colors.base02, gui = 'none', guisp = nil, ctermfg = M.colors.cterm01, ctermbg = M.colors.cterm02 }
  
-     hi.TreesitterContext = { guifg = nil, guibg = M.colors.base01, gui = 'italic', guisp = nil, ctermfg = nil, ctermbg = M.colors.cterm01 }
+-    hi.TreesitterContext = { guifg = nil, guibg = M.colors.base01, gui = 'italic', guisp = nil, ctermfg = nil, ctermbg = M.colors.cterm01 }
++    hi.TreesitterContextSeparator = 'NonText'
  
      if M.config.telescope then
 -        if not M.config.telescope_borders and hex_re:match_str(M.colors.base00) and hex_re:match_str(M.colors.base01) and

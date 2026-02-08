@@ -38,9 +38,8 @@ end
 function M.close_floats()
   for _, win in ipairs(api.nvim_list_wins()) do
     local ft = bo[api.nvim_win_get_buf(win)].filetype
-    if (not vim.list_contains({ 'colorful-winsep' }, ft)) and
-        (api.nvim_win_get_config(win).relative ~= ''
-          or vim.list_contains({ 'compilation', 'help', 'qf' }, ft)) then
+    local cfg = api.nvim_win_get_config(win)
+    if cfg.focusable and (cfg.relative ~= '' or vim.list_contains({ 'compilation', 'help', 'qf' }, ft)) then
       api.nvim_win_close(win, false)
     end
   end

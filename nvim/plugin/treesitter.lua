@@ -13,6 +13,11 @@ vim.api.nvim_create_autocmd('FileType', {
   end,
 })
 
+require('treesitter-context').setup {
+  max_lines = 2,
+  separator = '─',
+}
+
 require('nvim-treesitter-textobjects').setup {
   select = {
     lookahead = true,
@@ -31,7 +36,7 @@ keymap.set({ 'x', 'o' }, 'ac', function() tsto_select.select_textobject('@class.
   { desc = 'Select outer part of a class' })
 keymap.set({ 'x', 'o' }, 'ic', function() tsto_select.select_textobject('@class.inner', 'textobjects') end,
   { desc = 'Select inner part of a class' })
-keymap.set('n', '<leader>a', function() tsto_swap.swap_next '@parameter.inner' end,
+keymap.set('n', '<leader>a', function() tsto_swap.swap_next('@parameter.inner') end,
   { desc = 'Swap parameter with next' })
-keymap.set('n', '<leader>A', function() tsto_swap.swap_previous '@parameter.outer' end,
+keymap.set('n', '<leader>A', function() tsto_swap.swap_previous('@parameter.outer') end,
   { desc = 'Swap parameter with previous' })

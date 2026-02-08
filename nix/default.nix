@@ -64,6 +64,7 @@ let
     go
     gopls
     lua-language-server
+    neocmakelsp
     nixd
     ocamlPackages.ocaml-lsp
     rust-analyzer

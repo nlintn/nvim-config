@@ -74,6 +74,7 @@ lsp.enable {
   'isabelle',
   'jsonls',
   'lua_ls',
+  'neocmake',
   'nixd',
   'ocamllsp',
   'rust_analyzer',

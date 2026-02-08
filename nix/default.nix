@@ -25,6 +25,7 @@ let
     cmp-nvim-lsp-document-symbol
     cmp-nvim-lsp-signature-help
     colorful-winsep-nvim
+    comment-nvim
     compile-mode-nvim
     conform-nvim
     crates-nvim

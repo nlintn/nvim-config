@@ -1,6 +1,6 @@
 local api = vim.api
 local opt_local = vim.opt_local
-local utils = require('utils')
+local utils = require('user.utils')
 
 local gr_cursorline = api.nvim_create_augroup('CursorLine', {
   clear = true

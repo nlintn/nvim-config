@@ -1,6 +1,6 @@
 local cmd = vim.cmd
 local keymap = vim.keymap
-local utils = require('utils')
+local utils = require('user.utils')
 
 keymap.set('n', '<Esc>', utils.close_floats, { desc = 'Close floating windows' })
 

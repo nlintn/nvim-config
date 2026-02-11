@@ -1,6 +1,6 @@
 local api = vim.api
 local cmd = vim.cmd
-local utils = require('utils')
+local utils = require('user.utils')
 
 api.nvim_create_user_command('BgTransparencyToggle', utils.bg_transparency_toggle,
   { desc = 'Toggle background transparency' })

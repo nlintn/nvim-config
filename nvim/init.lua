@@ -1,2 +1,2 @@
-require('config')
-require('startup')
+require('user.config')
+require('user.startup')

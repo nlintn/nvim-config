@@ -1,5 +1,5 @@
 local keymap = vim.keymap
-local utils = require('utils')
+local utils = require('user.utils')
 
 local telescope = require('telescope')
 telescope.setup {

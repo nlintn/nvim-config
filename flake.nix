@@ -5,7 +5,7 @@
       lib' = nixpkgs-overlay.lib;
     in
     {
-      packages = lib'.eachSystem nixpkgs (
+      packages = lib'.eachSystem (
         system:
         let
           pkgs = import nixpkgs {

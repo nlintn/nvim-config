@@ -31,7 +31,7 @@ let
     crates-nvim
     diffview-nvim
     gitsigns-nvim
-    indent-blankline-nvim-lua
+    indent-blankline-nvim
     isabelle-lsp-nvim
     isabelle-syn-nvim
     lualine-nvim
@@ -45,7 +45,6 @@ let
     nvim-treesitter.withAllGrammars
     nvim-web-devicons
     oil-nvim
-    orgmode
     rainbow-delimiters-nvim
     render-markdown-nvim
     telescope-fzf-native-nvim

@@ -1,16 +1,16 @@
 {
   callPackage,
   lib,
-  neovimUtils,
   neovim-unwrapped,
   pkgs,
-  stdenv,
-  sqlite,
   vimPlugins,
+  vimUtils,
   wrapNeovimUnstable,
 
-  buildAppImage ? false,
   base16-palette ? null,
+  buildAppImage ? false,
+  viAlias ? false,
+  vimAlias ? false,
 }:
 
 let
@@ -87,34 +87,18 @@ let
     git
     gnutar
     mercurial
+    python3Packages.pylatexenc
     ripgrep
     tree-sitter
   ];
 
-  extraLuaPackages = p: [ ];
-
-  withNodeJs = false;
-
-  withPython3 = false;
-  extraPython3Packages = p: [ ];
-
-  withRuby = false;
-  withSqlite = false;
-
-  viAlias = false;
-  vimAlias = false;
-
-  rtp = stdenv.mkDerivation {
-    name = "rtp";
-    src = ../nvim;
-    phases = [ "installPhase" ];
-    installPhase = ''
-      mkdir -p $out;
-      cp -r $src/* $out/
-    '';
+  usrCfg = vimUtils.buildVimPlugin {
+    name = "user-config";
+    src = lib.cleanSource ../nvim;
+    doCheck = false;
   };
 
-  customLuaRC = ''
+  luaRcContent = /* lua */ ''
     ${lib.optionalString buildAppImage ''
       vim.o.shell = '${lib.getExe pkgs.bashInteractive}'
     ''}
@@ -124,59 +108,27 @@ let
       } }
     ''}
 
-    vim.opt.rtp:prepend('${rtp}')
-    vim.opt.rtp:prepend('${rtp}/after')
-
     ${lib.readFile ../nvim/init.lua}
   '';
 
-  extraMakeWrapperArgs =
-    let
-      sqliteLibExt = stdenv.hostPlatform.extensions.sharedLibrary;
-      sqliteLibPath = "${sqlite.out}/lib/libsqlite3${sqliteLibExt}";
-      extraPackages' = extraPackages ++ (lib.optionals withSqlite [ sqlite ]);
-    in
-    (
-      (lib.optionals (extraPackages' != [ ]) [
-        "--prefix"
-        "PATH"
-        ":"
-        (lib.makeBinPath extraPackages')
-      ])
-      ++ (lib.optionals withSqlite [
-        "--set"
-        "LIBSQLITE_CLIB_PATH"
-        sqliteLibPath
-        "--set"
-        "LIBSQLITE"
-        sqliteLibPath
-      ])
-    );
-
-  neovimConfig =
-    let
-      cfg = neovimUtils.makeNeovimConfig {
-        wrapRc = true;
-        inherit
-          customLuaRC
-          plugins
-          extraPython3Packages
-          extraLuaPackages
-          withNodeJs
-          withRuby
-          withPython3
-          viAlias
-          vimAlias
-          ;
-      };
-    in
-    cfg
-    // {
-      wrapperArgs = cfg.wrapperArgs ++ extraMakeWrapperArgs;
-    };
+  wrapperArgs = lib.optionals (extraPackages != [ ]) [
+    "--prefix"
+    "PATH"
+    ":"
+    (lib.makeBinPath extraPackages)
+  ];
 
   wrapperOverrides = lib.optionalAttrs buildAppImage {
     wl-clipboard = null;
   };
 in
-(wrapNeovimUnstable.override wrapperOverrides) neovim-unwrapped neovimConfig
+(wrapNeovimUnstable.override wrapperOverrides) neovim-unwrapped {
+  wrapRc = true;
+  plugins = plugins ++ [ usrCfg ];
+  inherit
+    luaRcContent
+    viAlias
+    vimAlias
+    wrapperArgs
+    ;
+}

@@ -39,6 +39,7 @@ let
     nvim-cmp
     nvim-cursorline
     nvim-highlight-colors
+    nvim-hlslens
     nvim-lspconfig
     nvim-navic
     nvim-treesitter-context

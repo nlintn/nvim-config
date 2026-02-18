@@ -38,6 +38,7 @@ let
     nvim-autopairs
     nvim-cmp
     nvim-cursorline
+    nvim-highlight-colors
     nvim-lspconfig
     nvim-navic
     nvim-treesitter-context

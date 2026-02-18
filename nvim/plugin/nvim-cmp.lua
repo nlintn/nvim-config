@@ -1,4 +1,5 @@
 local cmp = require('cmp')
+local nhc = require('nvim-highlight-colors')
 
 local cmp_kinds = {
   Text = '  ',
@@ -42,9 +43,15 @@ cmp.setup {
     },
   },
   formatting = {
-    format = function(_, vim_item)
-      vim_item.kind = (cmp_kinds[vim_item.kind] or '') .. vim_item.kind
-      return vim_item
+    format = function(entry, item)
+      local color_item = nhc.format(entry, { kind = item.kind })
+      if color_item.abbr_hl_group then
+        item.kind_hl_group = color_item.abbr_hl_group
+        item.kind = color_item.abbr .. '  ' .. item.kind
+      else
+        item.kind = (cmp_kinds[item.kind] or '   ') .. item.kind
+      end
+      return item
     end,
   },
   mapping = cmp.mapping.preset.insert {

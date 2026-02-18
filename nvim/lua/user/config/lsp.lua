@@ -72,6 +72,7 @@ lsp.enable {
   'gopls',
   'html',
   'isabelle',
+  'jdtls',
   'jsonls',
   'lua_ls',
   'neocmake',

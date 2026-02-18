@@ -67,6 +67,7 @@ let
     nixd
     ocamlPackages.ocaml-lsp
     rust-analyzer
+    jdt-language-server
     texlab
     typescript-language-server
     vscode-langservers-extracted

@@ -33,7 +33,7 @@ o.shiftwidth = 0
 o.expandtab = true
 
 o.list = true
-o.listchars = { tab = '«-»', trail = '·', nbsp = '␣', extends = '⟩', precedes = '⟨' }
+o.listchars = { trail = '·', nbsp = '␣', extends = '⟩', precedes = '⟨' }
 
 o.mouse = 'a'
 o.mousemoveevent = true

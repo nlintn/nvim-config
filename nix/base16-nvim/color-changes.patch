@@ -1,4 +1,4 @@
-From ec1f8d02d99552748aacc91c48f112aa9b7826f4 Mon Sep 17 00:00:00 2001
+From e3575c91d165662b63416c6d6ae656ccb4817adc Mon Sep 17 00:00:00 2001
 From: Nico Lintner <118087966+nlintn@users.noreply.github.com>
 Date: Fri, 8 Aug 2025 17:02:07 +0200
 Subject: [PATCH] color changes
@@ -8,7 +8,7 @@ Subject: [PATCH] color changes
  1 file changed, 152 insertions(+), 126 deletions(-)
 
 diff --git a/lua/base16-colorscheme.lua b/lua/base16-colorscheme.lua
-index 92dfbab..1c219f3 100644
+index 92dfbab..15f11d3 100644
 --- a/lua/base16-colorscheme.lua
 +++ b/lua/base16-colorscheme.lua
 @@ -92,7 +92,6 @@ M.highlight = setmetatable({}, {
@@ -163,14 +163,14 @@ index 92dfbab..1c219f3 100644
 +    hi.CompileModeOutputFile              = { guifg = M.colors.base0E, guibg = nil, gui = nil, guisp = nil, ctermfg = M.colors.cterm0E, ctermbg = nil }
 +    hi.CompileModeWarning                 = 'DiagnosticWarn'
 +
-+    hi.manBold                            = { guifg = M.colors.base08, guibg = nil, gui = 'bold', guisp = nil, ctermfg = M.colors.cterm08, ctermbg = nil }
++    hi.manBold                            = { guifg = M.colors.base08, guibg = nil, gui = nil, guisp = nil, ctermfg = M.colors.cterm08, ctermbg = nil }
 +    hi.manItalic                          = { guifg = M.colors.base0B, guibg = nil, gui = 'italic', guisp = nil, ctermfg = M.colors.cterm0B, ctermbg = nil }
 +    hi.manOptionDesc                      = { guifg = nil, guibg = nil, gui = nil, guisp = nil, ctermfg = nil, ctermbg = nil }
 +    hi.manReference                       = { guifg = M.colors.base0A, guibg = nil, gui = 'underline', guisp = nil, ctermfg = M.colors.cterm0A, ctermbg = nil }
-+    hi.manSectionHeading                  = { guifg = nil, guibg = nil, gui = nil, guisp = nil, ctermfg = nil, ctermbg = nil }
++    hi.manSectionHeading                  = { guifg = nil, guibg = nil, gui = 'bold', guisp = nil, ctermfg = nil, ctermbg = nil }
 +    hi.manSubheading                      = { guifg = nil, guibg = nil, gui = nil, guisp = nil, ctermfg = nil, ctermbg = M.colors.cterm0D }
 +    hi.manTitle                           = { guifg = M.colors.base0C, guibg = nil, gui = nil, guisp = nil, ctermfg = M.colors.cterm0C, ctermbg = nil }
-+    hi.manHeader                          = { guifg = M.colors.base05, guibg = M.colors.base01, gui = 'bold', guisp = nil, ctermfg = M.colors.cterm05, ctermbg = M.colors.cterm01 }
++    hi.manHeader                          = { guifg = M.colors.base0B, guibg = M.colors.base01, gui = 'bold', guisp = nil, ctermfg = M.colors.cterm0B, ctermbg = M.colors.cterm01 }
 +    hi.manUnderline                       = { guifg = nil, guibg = nil, gui = 'underline', guisp = nil, ctermfg = nil, ctermbg = nil }
  
      -- Diffview.nvim highlighting

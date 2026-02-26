@@ -8,3 +8,4 @@ g.compile_mode = {
 }
 
 keymap.set({ 'n' }, '<C-k>', '<Cmd>vert bo Compile<CR>', { desc = 'Compile' })
+keymap.set({ 'n' }, '<C-K>', '<Cmd>vert bo Recompile<CR>', { desc = 'Recompile' })

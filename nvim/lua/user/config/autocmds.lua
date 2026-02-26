@@ -5,13 +5,13 @@ local utils = require('user.utils')
 local gr_cursorline = api.nvim_create_augroup('CursorLine', {
   clear = true
 })
-api.nvim_create_autocmd({ 'InsertEnter' }, {
+api.nvim_create_autocmd({ 'VimEnter', 'WinEnter' }, {
   group = gr_cursorline,
   callback = function()
     opt_local.cursorline = true
   end
 })
-api.nvim_create_autocmd({ 'InsertLeave', 'WinLeave' }, {
+api.nvim_create_autocmd({ 'WinLeave' }, {
   group = gr_cursorline,
   callback = function()
     opt_local.cursorline = false

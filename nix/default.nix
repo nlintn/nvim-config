@@ -96,7 +96,8 @@ let
   ];
 
   usrCfg = vimUtils.buildVimPlugin {
-    name = "user-config";
+    pname = "user-config";
+    version = "unstable";
     src = lib.cleanSource ../nvim;
     doCheck = false;
   };

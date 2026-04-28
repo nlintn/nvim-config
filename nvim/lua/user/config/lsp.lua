@@ -34,13 +34,6 @@ api.nvim_create_autocmd({ 'LspAttach' }, {
 
     keymap.set({ 'i', 'v' }, '<C-s>', function() lsp.buf.signature_help { border = 'single', } end,
       { desc = 'View signature', buffer = true })
-
-    api.nvim_create_autocmd({ 'BufEnter', 'CursorHold', 'InsertLeave' }, {
-      pattern = '<buffer>',
-      callback = function()
-        lsp.codelens.refresh { bufnr = 0 }
-      end
-    })
   end
 })
 
@@ -61,6 +54,7 @@ diagnostic.config {
   },
 }
 
+lsp.codelens.enable()
 lsp.inlay_hint.enable()
 
 lsp.enable {

@@ -26,11 +26,13 @@ o.virtualedit = 'block'
 o.inccommand = 'split'
 o.incsearch = true
 o.ignorecase = true
+o.smartcase = true
 o.hlsearch = true
 
 o.tabstop = 4
 o.shiftwidth = 0
 o.expandtab = true
+o.fixeol = false
 
 o.list = true
 o.listchars = { trail = '·', nbsp = '␣', extends = '⟩', precedes = '⟨' }
@@ -68,7 +70,7 @@ if g.neovide ~= nil then
   g.neovide_cursor_animate_in_insert_mode = false
   g.neovide_cursor_animate_command_line = false
   g.neovide_hide_mouse_when_typing = 1
-  g.neovide_normal_opacity = 0.7
+  g.neovide_normal_opacity = 1
 else
   g.default_bg_transparency = true
 end

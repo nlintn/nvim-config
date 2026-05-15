@@ -7,6 +7,7 @@ local conform = require('conform')
 
 conform.setup {
   formatters_by_ft = {
+    astro = { 'prettierd' },
     bash = { 'shfmt' },
     css = { 'prettierd' },
     go = { 'gofmt' },

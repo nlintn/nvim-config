@@ -58,6 +58,7 @@ lsp.codelens.enable()
 lsp.inlay_hint.enable()
 
 lsp.enable {
+  'astro',
   'basedpyright',
   'bashls',
   'clangd',

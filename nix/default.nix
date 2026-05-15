@@ -59,6 +59,7 @@ let
 
   extraPackages = with pkgs; [
     # Language Servers
+    astro-language-server
     basedpyright
     bash-language-server
     clang-tools

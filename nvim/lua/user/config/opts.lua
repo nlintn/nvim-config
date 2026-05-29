@@ -53,7 +53,7 @@ o.splitbelow = false
 o.splitright = true
 o.cmdheight = 0
 
-o.foldlevel = 10
+o.foldlevel = 99
 
 o.completeopt = { 'menuone', 'preview', 'noselect', 'fuzzy', 'nosort' }
 
